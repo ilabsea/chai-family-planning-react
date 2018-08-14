@@ -111,5 +111,22 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
 
+  viewPager: {
+    flex: 1
+  },
+  errorMessageContainer:{
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute',
+    top: '50%',
+    left: 0,
+    right: 0
+  },
+  errorMessage:{
+    backgroundColor: 'black',
+    padding: 10,
+    borderRadius: 10,
+    color: 'white',
+    fontSize: 18
   }
 });

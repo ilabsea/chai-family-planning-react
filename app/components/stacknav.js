@@ -5,7 +5,8 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image
+  Image,
+  Colors
 } from 'react-native';
 
 import { createStackNavigator } from  'react-navigation';
@@ -92,6 +93,8 @@ const stackNav = createStackNavigator({
       },
     })
   },
+    })
+  }
 });
 
 export default stackNav;

@@ -56,7 +56,10 @@
 		FCBEFAE473E842BABF798CB4 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5E8709D55A254905A4332D21 /* Octicons.ttf */; };
 		5012081F52E749A6B6E40832 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B566A642FF40CB96B3EFD5 /* SimpleLineIcons.ttf */; };
 		C8777FD99CA44FA8BDFDFB8B /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC9182E9D1614219B1991FB7 /* Zocial.ttf */; };
+<<<<<<< HEAD
 		AD7C67EC398F428491CFBAF0 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F886D63B4B48D88605E2A5 /* libRCTVideo.a */; };
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -384,8 +387,11 @@
 		5E8709D55A254905A4332D21 /* Octicons.ttf */ = {isa = PBXFileReference; name = "Octicons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		40B566A642FF40CB96B3EFD5 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		FC9182E9D1614219B1991FB7 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+<<<<<<< HEAD
 		56AF5096B81B4BFF90508D49 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; name = "RCTVideo.xcodeproj"; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		F1F886D63B4B48D88605E2A5 /* libRCTVideo.a */ = {isa = PBXFileReference; name = "libRCTVideo.a"; path = "libRCTVideo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,7 +425,10 @@
 				E168EEC3AD004C688C308D5B /* libc++.tbd in Frameworks */,
 				DBEC6906F6254A919F866C38 /* libz.tbd in Frameworks */,
 				4DBA9FBB1A784ABF89542B18 /* libRNVectorIcons.a in Frameworks */,
+<<<<<<< HEAD
 				AD7C67EC398F428491CFBAF0 /* libRCTVideo.a in Frameworks */,
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,7 +620,10 @@
 				1B6CB52865C54850AD0DC0AB /* RNFS.xcodeproj */,
 				22EFE7CEE00744E888667334 /* RealmReact.xcodeproj */,
 				7C1BBCC76BEF437382FE14AF /* RNVectorIcons.xcodeproj */,
+<<<<<<< HEAD
 				56AF5096B81B4BFF90508D49 /* RCTVideo.xcodeproj */,
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1278,14 +1290,20 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 			};
 			name = Debug;
@@ -1309,14 +1327,20 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 			};
 			name = Release;
@@ -1341,7 +1365,10 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 			};
 			name = Debug;
@@ -1365,7 +1392,10 @@
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 			};
 			name = Release;
@@ -1398,14 +1428,20 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 			};
 			name = Debug;
@@ -1438,14 +1474,20 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 			};
 			name = Release;
@@ -1477,14 +1519,20 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 			};
 			name = Debug;
@@ -1516,14 +1564,20 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
+=======
+>>>>>>> finish #2 #3 design Questionnaire page follow data type
 				);
 			};
 			name = Release;
