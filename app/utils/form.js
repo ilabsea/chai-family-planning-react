@@ -9,7 +9,8 @@ const questionTypes = ['select_one', 'select_multiple', 'text'];
 export default class Form {
 
   static import(){
-    readFileAssets("form.xls", "ascii").then((res) => {
+    console.log('*********************import');
+    readFileAssets("chai.xls", "ascii").then((res) => {
       const wb = XLSX.read(input(res), {type:'binary'});
       for(let i=0; i< wb.SheetNames.length; i++){
         var wsname = wb.SheetNames[i];
@@ -54,6 +55,7 @@ export default class Form {
   }
 
   static addQuestion(data){
+    var order = 0;
     for(r=0; r<data.length; r++){
       questionType = data[r][0].split(' ');
       uuid = questionType.length > 1 ? questionType[1] : '';
@@ -65,10 +67,12 @@ export default class Form {
             type: type,
             name: data[r][1],
             label: data[r][2],
-            required: (data[r][3] == 'true'),
-            relevant: data[r][4]
+            required: (data[r][3] == 'yes' || data[r][3] == 'true'),
+            relevant: data[r][4],
+            order: order
           });
         });
+        order = order + 1;
       }
     }
   }
@@ -80,10 +84,28 @@ export default class Form {
           question_uuid: data[r][0],
           name: data[r][1],
           label: data[r][2],
+          value: data[r][1],
           media: data[r][3]
         });
       });
     }
+    this.linkOptionsToQuestion();
+  }
+
+  static linkOptionsToQuestion(){
+    questions = realm.objects('Question');
+    for(var i=0; i<questions.length; i++){
+      question = questions[i];
+      if(question.type == 'select_one' || question.type == 'select_multiple'){
+        realm.write(() => {
+          question.options = this.relatedOptions(question.uuid);
+        });
+      }
+    }
+  }
+
+  static relatedOptions(question_uuid){
+    return realm.objects('QuestionOption').filtered('question_uuid="' + question_uuid + '"');
   }
 
   static isFormExist(formId){

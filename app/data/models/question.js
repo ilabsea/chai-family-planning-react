@@ -7,12 +7,14 @@ export default class Question extends Realm.Object {}
 Question.schema = {
   name: 'Question',
   properties: {
-    uuid: {type: 'string', optional: true},
+    uuid: { type: 'string', optional: true },
     name: 'string',
     label: 'string',
     type: 'string',
-    required: {type: 'bool', default: false},
-    relevant: {type: 'string', optional: true}
+    order: 'int',
+    required: { type: 'bool', default: false },
+    relevant: { type: 'string', optional: true },
+    options: { type: 'list', objectType: 'QuestionOption' },
   }
 
 }

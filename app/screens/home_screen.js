@@ -4,12 +4,13 @@ import {
   StyleSheet,
   Text,
   View,
-  AsyncStorage
+  AsyncStorage,
+  Button
 } from 'react-native';
 
 import Form from '../utils/form';
 
-export default class Home extends Component {
+export default class HomeScreen extends Component {
 
   constructor(props) {
     super(props);
@@ -31,6 +32,7 @@ export default class Home extends Component {
     return (
       <View>
         <Text>Home</Text>
+        <Button onPress={() => this.props.navigation.navigate("Survey")} title="Survey" />
       </View>
     )
   }

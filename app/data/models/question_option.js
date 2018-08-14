@@ -10,6 +10,7 @@ QuestionOption.schema = {
     question_uuid: 'string',
     name: 'string',
     label: 'string',
+    value: 'string',
     media: {type: 'string', optional: true}
   }
 }
