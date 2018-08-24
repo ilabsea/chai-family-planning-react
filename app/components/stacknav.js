@@ -13,8 +13,22 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import HomeScreen from "../screens/home_screen";
 import AboutScreen from "../screens/about_screen";
 import SurveyScreen from "../screens/survey_screen";
+import VideoScreen from "../screens/video_screen";
+import TabletInfoScreen from "../screens/tablet_info_screen";
+import ConsentScreen from "../screens/consent_screen";
+import CounselingScreen from "../screens/counseling_screen";
 
 const stackNav = createStackNavigator({
+  TabletInfo: {
+    screen: TabletInfoScreen,
+    navigationOptions: ({navigation}) => ({
+      title: "Tablet Info",
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#1976d2',
+      },
+    })
+  },
   Home : {
     screen: HomeScreen,
     navigationOptions: ({navigation}) => ({
@@ -44,7 +58,38 @@ const stackNav = createStackNavigator({
         backgroundColor: '#1976d2',
       },
     })
-  }
+  },
+  Video: {
+    screen: VideoScreen,
+    navigationOptions: ({navigation}) => ({
+      title: "Video",
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#1976d2',
+      },
+    })
+  },
+  Consent: {
+    screen: ConsentScreen,
+    navigationOptions: ({navigation}) => ({
+      title: "Consent",
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#1976d2',
+      },
+    })
+  },
+  Counseling: {
+    screen: CounselingScreen,
+    navigationOptions: ({navigation}) => ({
+      title: "Counseling",
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#1976d2',
+      },
+    })
+  },
+
 });
 
 export default stackNav;

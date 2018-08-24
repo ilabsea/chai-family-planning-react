@@ -32,7 +32,7 @@ export default class HomeScreen extends Component {
     return (
       <View>
         <Text>Home</Text>
-        <Button onPress={() => this.props.navigation.navigate("Survey")} title="Survey" />
+        <Button onPress={() => this.props.navigation.navigate("Video")} title="Survey" />
       </View>
     )
   }
