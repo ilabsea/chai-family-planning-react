@@ -72,27 +72,25 @@ export default StyleSheet.create({
     borderColor: 'black',
     borderBottomWidth: 1
   },
-  centerItems: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   intro: {
     fontSize: 22,
     color: 'black',
-    margin: 2
+    textAlign: 'center',
+    marginTop: 20
   },
   buttonView: {
     flex: 1,
     flexDirection: 'row',
+    justifyContent: 'center'
   },
   button: {
     alignItems: 'center',
     backgroundColor: colors.skyBlue,
-    marginTop: 20,
-    padding: 10,
     width: '40%',
     height: 50,
-    marginRight: 10
+    alignSelf: 'flex-end',
+    padding: 10,
+    margin: 10
   },
   noButton: {
     backgroundColor: 'white',

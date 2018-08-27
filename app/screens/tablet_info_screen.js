@@ -17,13 +17,15 @@ export default class TabletInfoScreen extends Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <View style={[styles.container, styles.centerItems]}>
+      <View style={styles.container}>
         <Text style={styles.intro}>Please hand the tablet to provider</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigate("Consent")}>
-          <Text style={styles.buttonText}> Next </Text>
-        </TouchableOpacity>
+        <View style={[styles.container, {justifyContent: 'flex-end'}]}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigate("Consent")}>
+            <Text style={styles.buttonText}> Next </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }

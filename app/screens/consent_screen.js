@@ -18,8 +18,7 @@ export default class ConsentScreen extends Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <View style={[styles.container, styles.centerItems]}>
-        <View style={{height: '40%'}}/>
+      <View style={[styles.container]}>
         <Text style={styles.intro}>Display the consent text</Text>
         <View style={styles.buttonView}>
           <TouchableOpacity

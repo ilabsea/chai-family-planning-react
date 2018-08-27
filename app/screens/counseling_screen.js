@@ -19,11 +19,13 @@ export default class CounselingScreen extends Component {
     return (
       <View style={[styles.container, styles.centerItems]}>
         <Text style={styles.intro}>Please give her birth spacing counseling without using app</Text>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigate("Home")}>
-          <Text style={styles.buttonText}> Ok </Text>
-        </TouchableOpacity>
+        <View style={[styles.container, {justifyContent: 'flex-end'}]}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigate("Home")}>
+            <Text style={styles.buttonText}> Ok </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
