@@ -1,11 +1,11 @@
-
 import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
   Text,
-  View, TouchableOpacity,
-  Colors
+  View,
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
 import { createStackNavigator } from  'react-navigation';
@@ -19,16 +19,6 @@ import ConsentScreen from "../screens/consent_screen";
 import CounselingScreen from "../screens/counseling_screen";
 
 const stackNav = createStackNavigator({
-  TabletInfo: {
-    screen: TabletInfoScreen,
-    navigationOptions: ({navigation}) => ({
-      title: "Tablet Info",
-      headerTintColor: 'white',
-      headerStyle: {
-        backgroundColor: '#1976d2',
-      },
-    })
-  },
   Home : {
     screen: HomeScreen,
     navigationOptions: ({navigation}) => ({
@@ -57,22 +47,15 @@ const stackNav = createStackNavigator({
       headerStyle: {
         backgroundColor: '#1976d2',
       },
+      headerLeft: (<TouchableOpacity onPress={ navigation.getParam('showScaleAnimationDialog') } style={{paddingLeft: 20}}>
+                    <Image source={require('../assets/images/arrow-left.png')} style={{ width: 20}} />
+                  </TouchableOpacity>)
     })
   },
   Video: {
     screen: VideoScreen,
     navigationOptions: ({navigation}) => ({
       title: "Video",
-      headerTintColor: 'white',
-      headerStyle: {
-        backgroundColor: '#1976d2',
-      },
-    })
-  },
-  Consent: {
-    screen: ConsentScreen,
-    navigationOptions: ({navigation}) => ({
-      title: "Consent",
       headerTintColor: 'white',
       headerStyle: {
         backgroundColor: '#1976d2',
@@ -89,7 +72,26 @@ const stackNav = createStackNavigator({
       },
     })
   },
-
+  TabletInfo: {
+    screen: TabletInfoScreen,
+    navigationOptions: ({navigation}) => ({
+      title: "Tablet Info",
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#1976d2',
+      },
+    })
+  },
+  Consent: {
+    screen: ConsentScreen,
+    navigationOptions: ({navigation}) => ({
+      title: "Consent",
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#1976d2',
+      },
+    })
+  },
 });
 
 export default stackNav;

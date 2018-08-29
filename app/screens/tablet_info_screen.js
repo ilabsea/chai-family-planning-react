@@ -21,7 +21,7 @@ export default class TabletInfoScreen extends Component {
         <Text style={styles.intro}>Please hand the tablet to provider</Text>
         <View style={[styles.container, {justifyContent: 'flex-end'}]}>
           <TouchableOpacity
-            style={styles.button}
+            style={[ styles.button, { width: '100%', marginRight: 0 } ]}
             onPress={() => navigate("Consent")}>
             <Text style={styles.buttonText}> Next </Text>
           </TouchableOpacity>

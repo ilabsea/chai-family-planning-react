@@ -21,7 +21,7 @@ export default class CounselingScreen extends Component {
         <Text style={styles.intro}>Please give her birth spacing counseling without using app</Text>
         <View style={[styles.container, {justifyContent: 'flex-end'}]}>
           <TouchableOpacity
-            style={styles.button}
+            style={[styles.button, {width: '100%', marginRight: 0}]}
             onPress={() => navigate("Home")}>
             <Text style={styles.buttonText}> Ok </Text>
           </TouchableOpacity>

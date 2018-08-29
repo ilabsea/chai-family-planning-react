@@ -104,6 +104,12 @@ export default StyleSheet.create({
   },
   noButtonText:{
     color: colors.skyBlue,
-  }
+  },
+  headerPopup: {
+    fontSize: 22,
+    color: 'black',
+    fontWeight: 'bold',
+    marginBottom: 20,
 
+  }
 });
