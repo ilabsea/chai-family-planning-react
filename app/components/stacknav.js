@@ -18,6 +18,7 @@ import VideoScreen from "../screens/video_screen";
 import TabletInfoScreen from "../screens/tablet_info_screen";
 import ConsentScreen from "../screens/consent_screen";
 import CounselingScreen from "../screens/counseling_screen";
+import ReportScreen from "../screens/report_screen";
 
 const stackNav = createStackNavigator({
   Home : {
@@ -94,7 +95,17 @@ const stackNav = createStackNavigator({
     })
   },
     })
-  }
+  },
+  Report: {
+    screen: ReportScreen,
+    navigationOptions: ({navigation}) => ({
+      title: "Data",
+      headerTintColor: 'white',
+      headerStyle: {
+        backgroundColor: '#1976d2',
+      },
+    })
+  },
 });
 
 export default stackNav;

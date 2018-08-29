@@ -128,5 +128,10 @@ export default StyleSheet.create({
     borderRadius: 10,
     color: 'white',
     fontSize: 18
+  },
+  thankMessage:{
+    fontSize: 22,
+    color: 'black',
+    paddingBottom: 20
   }
 });

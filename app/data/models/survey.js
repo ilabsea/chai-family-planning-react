@@ -7,7 +7,7 @@ export default class Survey extends Realm.Object {}
 Survey.schema = {
   name: 'Survey',
   properties: {
-    value: {type: 'list', objectType: 'Answer'},
+    value: 'string',
     version: 'string',
     start_entried_at: 'date',
     end_entried_at: 'date'

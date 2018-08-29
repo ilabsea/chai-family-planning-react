@@ -6,6 +6,10 @@ import {ScrollView, Text, View, TouchableOpacity, Image} from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
+import SurveyService from '../services/survey_service';
+
+const numOfOffLineRecords = SurveyService.count();
+
 class SideMenu extends Component {
   navigateToScreen = (route) => () => {
     const navigateAction = NavigationActions.navigate({
@@ -31,10 +35,10 @@ class SideMenu extends Component {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={this.navigateToScreen('QuestionForm')}>
+            <TouchableOpacity onPress={this.navigateToScreen('Survey')}>
               <View style={styles.row}>
                 <AwesomeIcon name='database' size={20} style={styles.icon} />
-                <Text style={styles.menuItem} >Data</Text>
+                <Text style={styles.menuItem} >Survey {numOfOffLineRecords > 0 ? `(${numOfOffLineRecords})`: ''}</Text>
               </View>
             </TouchableOpacity>
 
