@@ -8,9 +8,8 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import SurveyService from '../services/survey_service';
 
-const numOfOffLineRecords = SurveyService.count();
-
 class SideMenu extends Component {
+
   navigateToScreen = (route) => () => {
     const navigateAction = NavigationActions.navigate({
       routeName: route
@@ -18,7 +17,15 @@ class SideMenu extends Component {
     this.props.navigation.dispatch(navigateAction);
   }
 
+  constructor(props){
+    super(props);
+    this.state = {
+      numOfOffLineRecords: SurveyService.count(),
+    }
+  }
+
   render () {
+    const numOfOffLineRecords = SurveyService.count();
     return (
       <View style={styles.container}>
         <ScrollView>
@@ -50,9 +57,6 @@ class SideMenu extends Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
-        <View style={styles.footerContainer}>
-          <Text>This is my fixed footer</Text>
-        </View>
       </View>
     );
   }

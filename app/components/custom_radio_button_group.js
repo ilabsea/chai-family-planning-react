@@ -27,7 +27,8 @@ class Radio extends Component {
       return(
         <TouchableOpacity key={name} onPress={this.handlePress}>
           <View>
-            <CheckBox title={label} onPress={this.handlePress} checkedIcon='dot-circle-o' uncheckedIcon='circle-o'
+            <CheckBox title={label} onPress={this.handlePress}
+              checkedIcon='dot-circle-o' uncheckedIcon='circle-o'
               checked={checked}
              />
              { media &&
