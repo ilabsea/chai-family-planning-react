@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.brentvatne.react.ReactVideoPackage;
+import com.pilloxa.backgroundjob.BackgroundJobPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import io.realm.react.RealmReactPackage;
 import com.rnfs.RNFSPackage;
@@ -31,7 +32,8 @@ public class MainApplication extends Application implements ReactApplication {
           new ReactVideoPackage(),
           new VectorIconsPackage(),
           new RealmReactPackage(),
-          new RNFSPackage()
+          new RNFSPackage(),
+          new BackgroundJobPackage()
       );
     }
 

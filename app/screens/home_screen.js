@@ -5,7 +5,9 @@ import {
   Text,
   View,
   AsyncStorage,
-  Button
+  Button,
+  Alert,
+  TouchableHighlight
 } from 'react-native';
 
 import Form from '../utils/form';

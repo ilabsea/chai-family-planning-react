@@ -57,9 +57,13 @@
 		5012081F52E749A6B6E40832 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 40B566A642FF40CB96B3EFD5 /* SimpleLineIcons.ttf */; };
 		C8777FD99CA44FA8BDFDFB8B /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FC9182E9D1614219B1991FB7 /* Zocial.ttf */; };
 <<<<<<< HEAD
+<<<<<<< HEAD
 		AD7C67EC398F428491CFBAF0 /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F1F886D63B4B48D88605E2A5 /* libRCTVideo.a */; };
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+		68C9A083DCB746598C11369C /* libRNBackgroundJob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C72BD34BBB3F4CD39BC2A57D /* libRNBackgroundJob.a */; };
+>>>>>>> finish #5 sync offline data to server when internet is connected
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -388,10 +392,15 @@
 		40B566A642FF40CB96B3EFD5 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; name = "SimpleLineIcons.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		FC9182E9D1614219B1991FB7 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 <<<<<<< HEAD
+<<<<<<< HEAD
 		56AF5096B81B4BFF90508D49 /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; name = "RCTVideo.xcodeproj"; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		F1F886D63B4B48D88605E2A5 /* libRCTVideo.a */ = {isa = PBXFileReference; name = "libRCTVideo.a"; path = "libRCTVideo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+		52FAD327B27F428E8420B2C5 /* RNBackgroundJob.xcodeproj */ = {isa = PBXFileReference; name = "RNBackgroundJob.xcodeproj"; path = "../node_modules/react-native-background-job/ios/RNBackgroundJob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		C72BD34BBB3F4CD39BC2A57D /* libRNBackgroundJob.a */ = {isa = PBXFileReference; name = "libRNBackgroundJob.a"; path = "libRNBackgroundJob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+>>>>>>> finish #5 sync offline data to server when internet is connected
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -426,9 +435,13 @@
 				DBEC6906F6254A919F866C38 /* libz.tbd in Frameworks */,
 				4DBA9FBB1A784ABF89542B18 /* libRNVectorIcons.a in Frameworks */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				AD7C67EC398F428491CFBAF0 /* libRCTVideo.a in Frameworks */,
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+				68C9A083DCB746598C11369C /* libRNBackgroundJob.a in Frameworks */,
+>>>>>>> finish #5 sync offline data to server when internet is connected
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,9 +634,13 @@
 				22EFE7CEE00744E888667334 /* RealmReact.xcodeproj */,
 				7C1BBCC76BEF437382FE14AF /* RNVectorIcons.xcodeproj */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				56AF5096B81B4BFF90508D49 /* RCTVideo.xcodeproj */,
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+				52FAD327B27F428E8420B2C5 /* RNBackgroundJob.xcodeproj */,
+>>>>>>> finish #5 sync offline data to server when internet is connected
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1291,9 +1308,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1301,9 +1322,13 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 			};
 			name = Debug;
@@ -1328,9 +1353,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1338,9 +1367,13 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 			};
 			name = Release;
@@ -1366,9 +1399,13 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 			};
 			name = Debug;
@@ -1393,9 +1430,13 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 			};
 			name = Release;
@@ -1429,9 +1470,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1439,9 +1484,13 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 			};
 			name = Debug;
@@ -1475,9 +1524,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1485,9 +1538,13 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 			};
 			name = Release;
@@ -1520,9 +1577,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1530,9 +1591,13 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 			};
 			name = Debug;
@@ -1565,9 +1630,13 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1575,9 +1644,13 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					"$(SRCROOT)/../node_modules/react-native-video/ios",
 =======
 >>>>>>> finish #2 #3 design Questionnaire page follow data type
+=======
+					"$(SRCROOT)/../node_modules/react-native-background-job/ios",
+>>>>>>> finish #5 sync offline data to server when internet is connected
 				);
 			};
 			name = Release;
