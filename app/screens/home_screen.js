@@ -11,21 +11,19 @@ import {
 } from 'react-native';
 
 import Form from '../utils/form';
+import { version } from '../../package.json';
 
 export default class HomeScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      firstLaunch: true
-		};
   }
 
   componentDidMount() {
-    AsyncStorage.getItem('FIRST_LUNCH', (err, value) => {
-      this.setState({firstLaunch: JSON.parse(value)});
-      if(this.state.firstLaunch || this.state.firstLaunch == null){
+    AsyncStorage.getItem('VERSION', (err, value) => {
+      if(value != version){
         Form.import();
+        AsyncStorage.setItem('VERSION', version);
       }
     });
   }

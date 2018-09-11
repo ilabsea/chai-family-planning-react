@@ -9,7 +9,7 @@ Version.schema = {
   properties: {
     id: 'string',
     version: 'int',
-    from_date: 'int',
-    to_date: {type: 'int', optional: true}
+    from_date: 'date',
+    to_date: {type: 'date', optional: true}
   }
 }

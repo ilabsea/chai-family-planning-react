@@ -9,7 +9,7 @@ const questionTypes = ['select_one', 'select_multiple', 'text'];
 export default class Form {
 
   static import(){
-    console.log('*********************import');
+    console.log('*** Import ***');
     readFileAssets("chai.xls", "ascii").then((res) => {
       const wb = XLSX.read(input(res), {type:'binary'});
       for(let i=0; i< wb.SheetNames.length; i++){
@@ -31,7 +31,6 @@ export default class Form {
           }
         }
       }
-      AsyncStorage.setItem('FIRST_LUNCH', JSON.stringify(false));
     }).catch((err) => {
       console.log('error');
       Alert.alert("importFile Error", "Error " + err.message);
@@ -44,17 +43,19 @@ export default class Form {
     if(formVersion){
       version = formVersion.version + 1;
       realm.write(() => {
-        formVersion.to_date = Date.now();
-        realm.create('Version', {id: data[1][0], version: version, from_date: Date.now()});
+        formVersion.to_date = new Date();
+        realm.create('Version', {id: data[1][0], version: version, from_date: new Date()});
       });
     }else{
       realm.write(() => {
-        realm.create('Version', {id: data[1][0], version: version, from_date: Date.now()});
+        realm.create('Version', {id: data[1][0], version: version, from_date: new Date()});
       });
     }
   }
 
   static addQuestion(data){
+    this.clearQuestion();
+
     var order = 0;
     for(r=0; r<data.length; r++){
       questionType = data[r][0].split(' ');
@@ -78,6 +79,7 @@ export default class Form {
   }
 
   static addQuestionOption(data){
+    this.clearQuestionOption();
     for(r=1; r<data.length; r++){
       realm.write(() => {
         realm.create('QuestionOption', {
@@ -90,6 +92,20 @@ export default class Form {
       });
     }
     this.linkOptionsToQuestion();
+  }
+
+  static clearQuestion(){
+    realm.write(() => {
+      let data = realm.objects('Question');
+      realm.delete(data);
+    });
+  }
+
+  static clearQuestionOption(){
+    realm.write(() => {
+      let data = realm.objects('QuestionOption');
+      realm.delete(data);
+    });
   }
 
   static linkOptionsToQuestion(){

@@ -18,7 +18,6 @@ import { FormLabel } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { reduxForm, Field, formValueSelector, getFormValues } from 'redux-form';
 
-import realm from '../data/schema';
 import styles from '../components/styles';
 
 import QuestionService from '../services/question_service';

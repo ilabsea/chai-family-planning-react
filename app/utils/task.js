@@ -7,7 +7,8 @@ export default class Task {
   static process(){
     BackgroundJob.schedule({
       jobKey: 'PushData',
-      period: environment['syn_schedule_in_ms']
+      period: environment['syn_schedule_in_ms'],
+      allowExecutionInForeground: true
     });
 
   }
