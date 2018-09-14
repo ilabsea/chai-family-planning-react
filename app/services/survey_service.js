@@ -16,17 +16,19 @@ export default class SurveyService {
   static count(){
     return this.get().length;
   }
+
   static save(survey, isOnline){
     survey.end_entried_at = new Date();
     survey.version = VersionService.version();
 
     if(isOnline){
-      api.post('/surveys', {survey: {0: survey}});
-    }else{
-      realm.write(() => {
-        realm.create('Survey', survey);
-        Task.process();
+      api.post('/surveys', {survey: {0: survey}}).then((response) => {
+        if(response['ok'] == false){
+          this.saveLocal(survey);
+        }
       });
+    }else{
+      this.saveLocal(survey);
     }
   }
 
@@ -38,6 +40,13 @@ export default class SurveyService {
         BackgroundJob.cancelAll();
         console.log('*** Completed ***');
       }
+    });
+  }
+
+  static saveLocal(survey){
+    realm.write(() => {
+      realm.create('Survey', survey);
+      Task.process();
     });
   }
 

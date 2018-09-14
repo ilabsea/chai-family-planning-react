@@ -4,30 +4,29 @@ import {
   StyleSheet,
   Text,
   View,
-  TextInput,
-  Image,
   Alert,
-  Button,
   ScrollView,
   Animated,
-  Easing
+  NetInfo
 } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
-import Swiper from 'react-native-swiper';
-import { FormLabel } from 'react-native-elements';
+import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { reduxForm, Field, formValueSelector, getFormValues } from 'redux-form';
+import Swiper from '../node_modules/react-native-swiper';
 
 import styles from '../components/styles';
 
 import QuestionService from '../services/question_service';
+import SurveyService from '../services/survey_service';
+
 import CustomTextInput from '../components/custom_text_input';
 import CustomRadioButtonGroup from '../components/custom_radio_button_group';
 import CustomCheckboxGroup from '../components/custom_checkbox_group';
+
 import SkipLogic from '../utils/skip_logic';
 import Expression from '../utils/expression';
-
-
 
 import submit from './submit';
 
@@ -40,40 +39,92 @@ class QuestionForm extends Component {
     super(props);
     this.state = {
       questions: questions.filter((question) => { return !question.relevant }),
-      scrollable: true,
-      currentIndex: 0,
       fadeIn: new Animated.Value(0),
       fadeOut: new Animated.Value(1),
+      startEntriedAt: new Date(),
+      currentIndex: 0,
+      isOnline: true,
+      scrollEnabled: true,
     }
     this.showingQuestions = this.state.questions;
   }
 
+  componentWillMount(){
+    NetInfo.isConnected.fetch().then(isConnected => {
+      this.setState({isOnline: isConnected});
+    })
+  }
+
+  componentDidMount(){
+    this.setState({startEntriedAt: new Date()});
+    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+  }
+
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectivityChange);
+  }
+
+  handleConnectivityChange = isConnected => {
+    this.setState({isOnline: isConnected});
+  };
+
+  handleIndexChange(newIndex, oldIndex){
+    if(newIndex == this.state.questions.length){
+      survey = {value: JSON.stringify(this.props.formValues), start_entried_at: this.state.startEntriedAt}
+      SurveyService.save(survey, this.state.isOnline);
+      this.setState({scrollEnabled: false});
+      this.props.notifyEndForm();
+    }else if(newIndex < oldIndex){
+      this.setState({currentIndex: newIndex});
+    }else{
+      let question = this.state.questions[newIndex-1];
+      valid = this._validate(question);
+      if(valid){
+        this.setState({currentIndex: newIndex});
+      }else{
+        this.setState({currentIndex: newIndex-1});
+        this.handleFieldError();
+        this.refs.scrollView.scrollBy(0);
+      }
+    }
+
+  }
+
+
   render() {
+    let swiperItems = this.state.questions.map((obj, index) => {
+      return (
+        <View key={index} style={{flex: 1}}>
+          <ScrollView style={styles.form}>
+            <View style={styles.fieldWrapper}>
+              { obj.required && <Text style={styles.required}>*</Text> }
+              <Text style={styles.fieldName}>{obj.label}</Text>
+            </View>
+            {this._renderQuestionField(obj)}
+          </ScrollView>
+          <Animated.View style={[styles.errorMessageContainer, {opacity: this.state.fadeIn}]}>
+            <Text style={styles.errorMessage}>Sorry this response is required</Text>
+          </Animated.View>
+        </View>
+      )
+    });
+
+    swiperItems.push(
+      <View key={'end'} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <Text style={styles.thankMessage}>Thank you !</Text>
+        <Button title="Watch Video Again" onPress={() => this.props.navigation.navigate("Video")}></Button>
+      </View>
+    );
+
     return (
       <Swiper showsPagination={false}
               loop={false}
-              index = {this.state.currentIndex}
-              onIndexChanged={(index) => {this.handleIndexChange(index)}}
-      >
-        { this.state.questions.map((obj, index) => {
-          return (
-              <ScrollView key={index} style={styles.form}>
-                <View style={styles.fieldWrapper}>
-                  { obj.required && <Text style={styles.required}>*</Text> }
-                  <Text style={styles.fieldName}>{obj.label}</Text>
-                </View>
-                {this._renderQuestionField(obj)}
-                <Animated.View style={{backgroundColor: '#c9c5c5',
-                  padding: 10, alignItems: 'center',
-                  borderRadius: 10, opacity: this.state.fadeIn}}>
-                  <Text>Sorry this response is required</Text>
-                </Animated.View>
-              </ScrollView>
-
-          )
-
-        })}
-
+              scrollEnabled={this.state.scrollEnabled}
+              ref="scrollView"
+              keyboardDismissMode='on-drag'
+              index={this.state.currentIndex}
+              onIndexChanged={(newIndex, oldIndex) => {this.handleIndexChange(newIndex, oldIndex)}}>
+        {swiperItems}
       </Swiper>
     );
   }
@@ -81,10 +132,6 @@ class QuestionForm extends Component {
   handleOnChange(question, value){
     this.props.formValues[question.name] = value;
     this._processSkipLogic(question);
-  }
-
-  handleIndexChange(index){
-    this.setState({currentIndex: index});
   }
 
   handleFieldError(){
@@ -107,6 +154,17 @@ class QuestionForm extends Component {
         ).start();
       }
     );
+  }
+
+  _validate(question){
+    if(question.required){
+      if(question.type == 'select_multiple'){
+        return (this.props.formValues[question.name] && this.props.formValues[question.name].length > 0);
+      }else{
+        return this.props.formValues[question.name] ? true : false;
+      }
+    }
+    return true;
   }
 
   _processSkipLogic(currentQuestion){
@@ -195,9 +253,7 @@ class QuestionForm extends Component {
 
 QuestionForm = reduxForm({
   form: 'survey'
-})(QuestionForm);
-
-const selector = formValueSelector('survey');
+})(withNavigation(QuestionForm));
 
 QuestionForm = connect(
   state => {

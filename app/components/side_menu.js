@@ -33,25 +33,17 @@ class SideMenu extends Component {
             <Image source={{uri: 'asset:/family.png'}} style={{width: 80, height: 80}} />
             <Text style={styles.menuBrand}>Family Planning</Text>
           </View>
-
-          <View>
-            <TouchableOpacity onPress={this.navigateToScreen('Home')}>
+          <View style={{paddingTop: 10}}>
+            <TouchableOpacity onPress={this.navigateToScreen('Video')}>
               <View style={styles.row}>
-                <AwesomeIcon name='home' size={20} style={styles.icon} />
-                <Text style={styles.menuItem} >Home</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={this.navigateToScreen('Survey')}>
-              <View style={styles.row}>
-                <AwesomeIcon name='database' size={20} style={styles.icon} />
+                <AwesomeIcon name='tasks' size={20} style={styles.icon} />
                 <Text style={styles.menuItem} >Survey {numOfOffLineRecords > 0 ? `(${numOfOffLineRecords})`: ''}</Text>
               </View>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={this.navigateToScreen('About')}>
               <View style={styles.row}>
-                <AwesomeIcon name='list' size={20} style={styles.icon} />
+                <AwesomeIcon name='info' size={20} style={styles.icon} />
                 <Text style={styles.menuItem}>About</Text>
               </View>
             </TouchableOpacity>

@@ -22,7 +22,7 @@ export default class CounselingScreen extends Component {
         <View style={[styles.container, {justifyContent: 'flex-end'}]}>
           <TouchableOpacity
             style={[styles.button, {width: '100%', marginRight: 0}]}
-            onPress={() => navigate("Home")}>
+            onPress={() => navigate("Video")}>
             <Text style={styles.buttonText}> Ok </Text>
           </TouchableOpacity>
         </View>

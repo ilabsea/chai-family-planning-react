@@ -3,39 +3,53 @@ import Video from 'react-native-video';
 import {
   StyleSheet,
   Text,
-  View
+  View,
+  AsyncStorage,
+  TouchableOpacity,
 } from 'react-native';
 
+import Form from '../utils/form';
+import { version } from '../../package.json';
+import styles from '../components/styles';
 
 export default class VideoScreen extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      paused: false
+    }
+  }
+
+  componentDidMount(){
+     var that = this;
+     this.props.navigation.addListener('willBlur', (event) => {
+        that.setState({paused: true});
+     });
+     AsyncStorage.getItem('VERSION', (err, value) => {
+       if(value != version){
+         Form.import();
+         AsyncStorage.setItem('VERSION', version);
+       }
+     });
   }
 
   render() {
     return (
-      // <Video source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
-
-      <Video source={require('../assets/videos/bunny.mp4')}
-       rate={1.0}
-       volume={1.0}
-       muted={false}
-       resizeMode={"cover"}
-       // repeat
-       onEnd={() => this.props.navigation.navigate("TabletInfo")}
-       style={styles.backgroundVideo} />
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.fullScreen}
+          onPress={() => this.setState({ paused: !this.state.paused })} >
+          <Video
+           source={{uri:'family'}}
+           rate={1.0}
+           paused={this.state.paused}
+           resizeMode={"cover"}
+           repeat={true}
+           onEnd={() => this.props.navigation.navigate("TabletInfo")}
+           style={styles.backgroundVideo} />
+        </TouchableOpacity>
+      </View>
     )
   }
-
 }
-
-var styles = StyleSheet.create({
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-  },
-});

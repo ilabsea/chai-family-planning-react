@@ -11,7 +11,7 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   header:{
     backgroundColor: colors.skyBlue,
@@ -34,7 +34,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     height: 48,
     paddingVertical: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 10
   },
   icon: {
     width: 32,
@@ -43,7 +43,7 @@ export default StyleSheet.create({
   form: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 10
   },
   fieldWrapper: {
     flexDirection: 'row',
@@ -110,7 +110,7 @@ export default StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     marginBottom: 20,
-
+  },
   viewPager: {
     flex: 1
   },
@@ -133,5 +133,26 @@ export default StyleSheet.create({
     fontSize: 22,
     color: 'black',
     paddingBottom: 20
-  }
-});
+  },
+  aboutText: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    color: 'black',
+    textAlign: 'justify',
+    fontSize: 18
+  },
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+  fullScreen: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+  },
+})
