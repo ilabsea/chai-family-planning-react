@@ -12,6 +12,8 @@ import Form from '../utils/form';
 import { version } from '../../package.json';
 import styles from '../components/styles';
 
+import SplashScreen from 'react-native-splash-screen'
+
 export default class VideoScreen extends Component {
 
   constructor(props) {
@@ -22,16 +24,18 @@ export default class VideoScreen extends Component {
   }
 
   componentDidMount(){
-     var that = this;
-     this.props.navigation.addListener('willBlur', (event) => {
-        that.setState({paused: true});
-     });
-     AsyncStorage.getItem('VERSION', (err, value) => {
-       if(value != version){
-         Form.import();
-         AsyncStorage.setItem('VERSION', version);
-       }
-     });
+    SplashScreen.hide();
+
+    var that = this;
+    this.props.navigation.addListener('willBlur', (event) => {
+      that.setState({paused: true});
+    });
+    AsyncStorage.getItem('VERSION', (err, value) => {
+      if(value != version){
+        Form.import();
+        AsyncStorage.setItem('VERSION', version);
+      }
+    });
   }
 
   render() {

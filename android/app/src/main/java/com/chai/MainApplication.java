@@ -13,6 +13,7 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.facebook.stetho.Stetho;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,8 @@ public class MainApplication extends Application implements ReactApplication {
           new VectorIconsPackage(),
           new RealmReactPackage(),
           new RNFSPackage(),
-          new BackgroundJobPackage()
+          new BackgroundJobPackage(),
+          new SplashScreenReactPackage()
       );
     }
 
