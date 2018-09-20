@@ -33,7 +33,7 @@ class Radio extends Component {
              />
              { media &&
                <View style={{alignItems:'center'}}>
-                 <ImageScalable source={{uri: 'asset:/'+media+'.png'}} />
+                 <ImageScalable source={{uri: 'asset:/images/'+media}} />
                </View>
              }
           </View>

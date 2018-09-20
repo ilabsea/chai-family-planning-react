@@ -15,6 +15,7 @@ Question.schema = {
     required: { type: 'bool', default: false },
     relevant: { type: 'string', optional: true },
     options: { type: 'list', objectType: 'QuestionOption' },
+    media: { type: 'string', optional: true },
   }
 
 }

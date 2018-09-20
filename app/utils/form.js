@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native';
+import { AsyncStorage, Alert } from 'react-native';
 import XLSX from 'xlsx';
 import { readFileAssets } from 'react-native-fs';
 import realm from '../data/schema';
@@ -10,7 +10,7 @@ export default class Form {
 
   static import(){
     console.log('*** Import ***');
-    readFileAssets("chai.xls", "ascii").then((res) => {
+    readFileAssets("forms/form.xls", "ascii").then((res) => {
       const wb = XLSX.read(input(res), {type:'binary'});
       for(let i=0; i< wb.SheetNames.length; i++){
         var wsname = wb.SheetNames[i];
@@ -70,6 +70,7 @@ export default class Form {
             label: data[r][2],
             required: (data[r][3] == 'yes' || data[r][3] == 'true'),
             relevant: data[r][4],
+            media: data[r][5],
             order: order
           });
         });

@@ -7,7 +7,7 @@ import {
   Alert,
   ScrollView,
   Animated,
-  NetInfo
+  NetInfo,
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 
@@ -15,6 +15,7 @@ import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { reduxForm, Field, formValueSelector, getFormValues } from 'redux-form';
 import Swiper from '../node_modules/react-native-swiper';
+import ImageScalable from 'react-native-scalable-image';
 
 import styles from '../components/styles';
 
@@ -94,7 +95,10 @@ class QuestionForm extends Component {
   render() {
     let swiperItems = this.state.questions.map((obj, index) => {
       return (
-        <View key={index} style={{flex: 1}}>
+        <View key={index} style={{flex: 1, backgroundColor: 'transparent'}}>
+          <View style={{alignItems: 'center'}}>
+              <ImageScalable style={{position: 'absolute'}} source={{ uri: 'asset:/images/'+obj.media }} />
+          </View>
           <ScrollView style={styles.form}>
             <View style={styles.fieldWrapper}>
               { obj.required && <Text style={styles.required}>*</Text> }

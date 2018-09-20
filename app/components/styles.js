@@ -43,11 +43,11 @@ export default StyleSheet.create({
   form: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingVertical: 10
   },
   fieldWrapper: {
     flexDirection: 'row',
-    paddingBottom: 10
+    paddingBottom: 10,
+    paddingTop: 10
   },
   fieldName: {
     fontSize: text.fontSize,

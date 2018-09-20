@@ -38,6 +38,11 @@ export default class VideoScreen extends Component {
     });
   }
 
+  handleOnVideoEnd(){
+    this.player.seek(0);
+    this.props.navigation.navigate("TabletInfo");
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -45,12 +50,12 @@ export default class VideoScreen extends Component {
           style={styles.fullScreen}
           onPress={() => this.setState({ paused: !this.state.paused })} >
           <Video
+           ref={(ref) => { this.player = ref }}
            source={{uri:'family'}}
            rate={1.0}
            paused={this.state.paused}
            resizeMode={"cover"}
-           repeat={true}
-           onEnd={() => this.props.navigation.navigate("TabletInfo")}
+           onEnd={() => this.handleOnVideoEnd() }
            style={styles.backgroundVideo} />
         </TouchableOpacity>
       </View>
