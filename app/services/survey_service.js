@@ -37,8 +37,7 @@ export default class SurveyService {
     api.post('/surveys', {survey: survey}).then((response) => {
       if(response['ok']){
         this.clear(survey);
-        BackgroundJob.cancelAll();
-        console.log('*** Completed ***');
+        BackgroundJob.cancel({jobKey: 'SynSurvey'});
       }
     });
   }
@@ -46,7 +45,7 @@ export default class SurveyService {
   static saveLocal(survey){
     realm.write(() => {
       realm.create('Survey', survey);
-      Task.process();
+      Task.synSurvey();
     });
   }
 

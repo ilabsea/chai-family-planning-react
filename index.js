@@ -8,7 +8,7 @@ import BackgroundJob from 'react-native-background-job';
 
 import SideMenu from './app/components/side_menu'
 import stackNav from './app/components/stacknav';
-import SurveyService from './app/services/survey_service';
+import Task from './app/utils/task';
 
 import {
   createDrawerNavigator,
@@ -24,9 +24,6 @@ const drawernav = createDrawerNavigator(
   }
 );
 
-BackgroundJob.register({
-  jobKey: 'PushData',
-  job: () => SurveyService.synOfflineData()
-});
+Task.init();
 
 AppRegistry.registerComponent(appName, () => drawernav);

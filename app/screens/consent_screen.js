@@ -10,32 +10,10 @@ import {
 import styles from '../components/styles';
 
 export default class ConsentScreen extends Component {
-  _didFocusSubscription;
-  _willBlurSubscription;
 
   constructor(props) {
     super(props);
-    this._didFocusSubscription = props.navigation.addListener('didFocus', payload =>
-      BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
-    );
   }
-
-  componentDidMount() {
-    this._willBlurSubscription = this.props.navigation.addListener('willBlur', payload =>
-      BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
-    );
-  }
-
-  componentWillUnmount() {
-    this._didFocusSubscription && this._didFocusSubscription.remove();
-    this._willBlurSubscription && this._willBlurSubscription.remove();
-  }
-
-  onBackButtonPressAndroid = () => {
-    this.props.navigation.navigate('Video');
-    return true;
-  }
-
 
   render() {
     const { navigate } = this.props.navigation;

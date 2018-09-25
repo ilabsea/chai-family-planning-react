@@ -2,6 +2,7 @@ import { AsyncStorage, Alert } from 'react-native';
 import XLSX from 'xlsx';
 import { readFileAssets } from 'react-native-fs';
 import realm from '../data/schema';
+import Task from './task';
 
 const input = res => res;
 const questionTypes = ['select_one', 'select_multiple', 'text'];
@@ -40,17 +41,14 @@ export default class Form {
   static addVersion(data){
     version = 1 ;
     formVersion = this.isFormExist(data[1][0]);
-    if(formVersion){
-      version = formVersion.version + 1;
-      realm.write(() => {
+    realm.write(() => {
+      if(formVersion){
+        version = formVersion.version + 1;
         formVersion.to_date = new Date();
-        realm.create('Version', {id: data[1][0], version: version, from_date: new Date()});
-      });
-    }else{
-      realm.write(() => {
-        realm.create('Version', {id: data[1][0], version: version, from_date: new Date()});
-      });
-    }
+      }
+      realm.create('Version', {uuid: data[1][0], version: version, from_date: new Date()});
+      Task.synVersion();
+    });
   }
 
   static addQuestion(data){
@@ -126,7 +124,7 @@ export default class Form {
   }
 
   static isFormExist(formId){
-    return realm.objects('Version').filtered('id="' + formId + '"').slice(-1)[0];
+    return realm.objects('Version').filtered('uuid="' + formId + '"').slice(-1)[0];
   }
 
 }
