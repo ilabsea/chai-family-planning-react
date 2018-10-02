@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "node ./android-release-gradle-fix.js"
   },
   "dependencies": {
     "apisauce": "^0.16.0",
@@ -13,6 +14,7 @@
     "moment": "^2.22.2",
     "react": "16.4.1",
     "react-native": "^0.56.0",
+    "react-native-animatable": "^1.3.0",
     "react-native-background-job": "^2.1.1",
     "react-native-elements": "^0.19.1",
     "react-native-fs": "^2.10.14",
@@ -20,6 +22,7 @@
     "react-native-popup-dialog": "^0.15.0",
     "react-native-scalable-image": "^0.4.0",
     "react-native-splash-screen": "^3.1.1",
+    "react-native-swipe-gestures": "^1.0.2",
     "react-native-swiper": "^1.5.13",
     "react-native-vector-icons": "^5.0.0",
     "react-native-video": "^3.2.0",

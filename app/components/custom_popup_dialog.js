@@ -12,7 +12,7 @@ import { withNavigation } from 'react-navigation';
 import PopupDialog, {
   DialogTitle,
   DialogButton,
-  ScaleAnimation
+  ScaleAnimation,
 } from 'react-native-popup-dialog';
 
 
@@ -55,24 +55,64 @@ class CustomPopupDialog extends Component {
           this.scaleAnimationDialog = popupDialog;
         }}
         dialogAnimation={scaleAnimation}
-        dialogStyle={{width: "90%", height: "35%"}}
-        actions={[
-          <DialogButton
-            text="CANCEL"
-            align="right"
-            textStyle={{color: '#1976d2'}}
-            onPress={() => {
-              this.scaleAnimationDialog.dismiss();
-            }}
-            key='cancel-button'/>,]}>
-        <View style={[styles.container, {margin: 30}]}>
-          <Text style={styles.headerPopup}>Exit Survey</Text>
-          <IconButton name='save' title='Save Changes' onPress={this.props.onSave}/>
-          <View style={{height: 10}}/>
-          <IconButton name='trash' title='Ignore Changes' onPress={this.ignoreChanges}/>
-        </View>
+        dialogStyle={this.props.dialogType == 'confirm' ? styles.confirmBox : styles.warningBox}
+        actions={this.dialogButtons()}>
+
+        {this.props.dialogType == 'confirm' &&
+          <View style={[styles.container, {margin: 30}]}>
+            <Text style={styles.headerPopup}>Exit Survey</Text>
+            <IconButton name='save' title='Save Changes' onPress={this.props.onSave}/>
+            <View style={{height: 10}}/>
+            <IconButton name='trash' title='Ignore Changes' onPress={this.ignoreChanges}/>
+          </View>
+        }
+
+        {this.props.dialogType == 'warning' &&
+          <View style={[styles.container, {margin: 30}]}>
+            <Text style={{fontSize: 18}}>Are you sure, you want leave this form ? </Text>
+          </View>
+        }
+
       </PopupDialog>
     )
+  }
+
+  dialogButtons(){
+    if(this.props.dialogType == 'confirm'){
+      return(
+        [          <DialogButton
+                    text="CANCEL"
+                    align="right"
+                    textStyle={{color: '#1976d2'}}
+                    onPress={() => {
+                      this.scaleAnimationDialog.dismiss();
+                    }}
+                    key='cancel-button'/>]
+      )
+    }
+
+    if(this.props.dialogType == 'warning'){
+      return(
+        [
+          <DialogButton
+            text="Yes"
+            textStyle={{color: '#1976d2'}}
+            onPress={this.ignoreChanges}
+            buttonStyle={{right: '20%', bottom: 0, position: 'absolute'}}
+            key='button-1'/>,
+
+            <DialogButton
+              text="No"
+              align="right"
+              textStyle={{color: '#1976d2'}}
+              buttonStyle={{bottom: 0, position: 'absolute'}}
+              onPress={() => {
+                this.scaleAnimationDialog.dismiss();
+              }}
+              key='button-2'/>
+        ]
+      )
+    }
   }
 }
 

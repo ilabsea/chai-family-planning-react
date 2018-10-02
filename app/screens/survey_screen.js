@@ -3,10 +3,9 @@ import {
   StyleSheet,
   Text,
   View,
-  AsyncStorage,
-  Alert,
   NetInfo,
-  BackHandler
+  BackHandler,
+  Keyboard
 } from 'react-native';
 
 import QuestionForm from './question_form';
@@ -25,7 +24,8 @@ export default class SurveyScreen extends Component {
     this.state = {
       isOnline: true,
       startEntriedAt: new Date(),
-      editing: true
+      editing: true,
+      dialogType: 'confirm'
     }
     this._didFocusSubscription = props.navigation.addListener('didFocus', payload =>
       BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
@@ -83,6 +83,7 @@ export default class SurveyScreen extends Component {
         <CustomPopupDialog onRef={ref => (this.popup = ref)}
           onNavigation={this.props.navigation}
           onSave={() => {this.saveForm()}}
+          dialogType = {this.state.dialogType}
         />
       </View>
 
@@ -90,10 +91,16 @@ export default class SurveyScreen extends Component {
   }
 
   _handleBack(){
+    Keyboard.dismiss();
     formValues = this.refs.survey.selector.props.formValues;
-    if(this.state.editing == false || Object.keys(formValues).length == 0){
+    if(this.state.editing == false){
       this.props.navigation.navigate("Video");
     }else{
+      if(Object.keys(formValues).length == 0){
+        this.setState({dialogType: 'warning'});
+      }else{
+        this.setState({dialogType: 'confirm'})
+      }
       this.popup.showScaleAnimationDialog();
     }
   }

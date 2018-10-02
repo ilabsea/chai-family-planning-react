@@ -18,7 +18,7 @@ class CustomCheckboxGroup extends Component {
                 return(
                   <CustomCheckBox key={item.label} {...item}
                     onChange={(event) => {
-                               let newValue = [...value] ;
+                               let newValue = [].concat(value) ;
                                 if(value.length == 0 || value.indexOf(item.value) == -1){
                                   newValue.push(item.value);
                                 }else{

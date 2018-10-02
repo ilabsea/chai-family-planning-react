@@ -4,40 +4,39 @@ import {
   StyleSheet,
   Text,
   View,
-  Alert,
   ScrollView,
   Animated,
   NetInfo,
+  Dimensions
 } from 'react-native';
-import { withNavigation } from 'react-navigation';
 
+import * as Animatable from 'react-native-animatable';
+import { withNavigation } from 'react-navigation';
 import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { reduxForm, Field, formValueSelector, getFormValues } from 'redux-form';
-import Swiper from '../node_modules/react-native-swiper';
 import ImageScalable from 'react-native-scalable-image';
 
 import styles from '../components/styles';
-
 import QuestionService from '../services/question_service';
 import SurveyService from '../services/survey_service';
-
 import CustomTextInput from '../components/custom_text_input';
 import CustomRadioButtonGroup from '../components/custom_radio_button_group';
 import CustomCheckboxGroup from '../components/custom_checkbox_group';
-
 import SkipLogic from '../utils/skip_logic';
 import Expression from '../utils/expression';
 
-import submit from './submit';
+import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 const questions = QuestionService.get();
 
 class QuestionForm extends Component {
   showingQuestions = [];
+  handleQuestionViewRef = ref => this.questionView = ref;
 
   constructor(props) {
     super(props);
+
     this.state = {
       questions: questions.filter((question) => { return !question.relevant }),
       fadeIn: new Animated.Value(0),
@@ -45,7 +44,6 @@ class QuestionForm extends Component {
       startEntriedAt: new Date(),
       currentIndex: 0,
       isOnline: true,
-      scrollEnabled: true,
     }
     this.showingQuestions = this.state.questions;
   }
@@ -69,76 +67,77 @@ class QuestionForm extends Component {
     this.setState({isOnline: isConnected});
   };
 
-  handleIndexChange(newIndex, oldIndex){
-    if(newIndex == this.state.questions.length){
-      survey = {value: JSON.stringify(this.props.formValues), start_entried_at: this.state.startEntriedAt}
-      SurveyService.save(survey, this.state.isOnline);
-      this.setState({scrollEnabled: false});
-      this.props.notifyEndForm();
-    }else if(newIndex < oldIndex){
-      this.setState({currentIndex: newIndex});
-    }else{
-      let question = this.state.questions[newIndex-1];
-      valid = this._validate(question);
-      if(valid){
-        this.setState({currentIndex: newIndex});
-      }else{
-        this.setState({currentIndex: newIndex-1});
-        this.handleFieldError();
-        this.refs.scrollView.scrollBy(0);
-      }
-    }
+  render() {
+    const config = {
+      velocityThreshold: 0.3,
+      directionalOffsetThreshold: 80
+    };
 
+    return (
+      <GestureRecognizer
+        onSwipeLeft={(state) => this._onSwipeLeft(state)}
+        onSwipeRight={(state) => this._onSwipeRight(state)}
+        config={config}
+        style={{flex: 1}}
+        >
+        {this._renderQuestion()}
+      </GestureRecognizer>
+    );
   }
 
-
-  render() {
-    let swiperItems = this.state.questions.map((obj, index) => {
-      return (
-        <View key={index} style={{flex: 1, backgroundColor: 'transparent'}}>
+  _renderQuestion(){
+    if(this.state.currentIndex == this.state.questions.length){
+      return(
+        <View key={'end'} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+          <Text style={styles.thankMessage}>Thank you !</Text>
+          <Button title="Watch Video Again" onPress={() => this.props.navigation.navigate("Video")}></Button>
+        </View>
+      )
+    }else{
+      question = this.state.questions[this.state.currentIndex];
+      return(
+        <Animatable.View style={{flex: 1, backgroundColor: 'transparent'}} ref={this.handleQuestionViewRef}>
           <View style={{alignItems: 'center'}}>
-              <ImageScalable style={{position: 'absolute'}} source={{ uri: 'asset:/images/'+obj.media }} />
+              <ImageScalable style={{position: 'absolute'}} source={{ uri: 'asset:/images/'+question.media }} />
           </View>
-          <ScrollView style={styles.form}>
+          <ScrollView style={styles.form} keyboardShouldPersistTaps='always'>
             <View style={styles.fieldWrapper}>
-              { obj.required && <Text style={styles.required}>*</Text> }
-              <Text style={styles.fieldName}>{obj.label}</Text>
+              { question.required && <Text style={styles.required}>*</Text> }
+              <Text style={styles.fieldName}>{question.label}</Text>
             </View>
-            {this._renderQuestionField(obj)}
+            {this._renderQuestionField(question)}
           </ScrollView>
           <Animated.View style={[styles.errorMessageContainer, {opacity: this.state.fadeIn}]}>
             <Text style={styles.errorMessage}>Sorry this response is required</Text>
           </Animated.View>
-        </View>
+        </Animatable.View>
       )
-    });
+    }
 
-    swiperItems.push(
-      <View key={'end'} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={styles.thankMessage}>Thank you !</Text>
-        <Button title="Watch Video Again" onPress={() => this.props.navigation.navigate("Video")}></Button>
-      </View>
-    );
-
-    return (
-      <Swiper showsPagination={false}
-              loop={false}
-              scrollEnabled={this.state.scrollEnabled}
-              ref="scrollView"
-              keyboardDismissMode='on-drag'
-              index={this.state.currentIndex}
-              onIndexChanged={(newIndex, oldIndex) => {this.handleIndexChange(newIndex, oldIndex)}}>
-        {swiperItems}
-      </Swiper>
-    );
   }
 
-  handleOnChange(question, value){
-    this.props.formValues[question.name] = value;
-    this._processSkipLogic(question);
+  _onSwipeLeft(gestureState) {
+    valid = this._validate(question);
+    if(valid){
+      this.questionView.slideInRight(150);
+      this.setState({currentIndex: (this.state.currentIndex+1)});
+      if((this.state.currentIndex+1) == this.state.questions.length){
+        survey = {value: JSON.stringify(this.props.formValues), start_entried_at: this.state.startEntriedAt}
+        SurveyService.save(survey, this.state.isOnline);
+        this.props.notifyEndForm();
+      }
+    }else{
+      this._handleFieldError();
+    }
   }
 
-  handleFieldError(){
+  _onSwipeRight(gestureState) {
+    if(this.state.currentIndex == 0) return;
+    this.questionView.slideInLeft(150);
+    this.setState({currentIndex: (this.state.currentIndex-1)});
+  }
+
+  _handleFieldError(){
     this.state.fadeIn.setValue(0)
     Animated.timing(
       this.state.fadeIn,
@@ -198,7 +197,7 @@ class QuestionForm extends Component {
           <Field name = { question.name }
                  component = { CustomTextInput }
                  style = { styles.textInput }
-                 onChange = {(value) => {this.handleOnChange(question, value)}}
+                 onChange = {(value) => {this._handleOnChange(question, value)}}
           />
         );
       }
@@ -207,7 +206,7 @@ class QuestionForm extends Component {
           <Field name = { question.name }
                  items={ question.options }
                  component={ CustomRadioButtonGroup }
-                 onChange = {(value) => {this.handleOnChange(question, value)}}
+                 onChange = {(value) => {this._handleOnChange(question, value)}}
           />
         );
       }
@@ -216,12 +215,17 @@ class QuestionForm extends Component {
           <Field name = { question.name }
                  component = { CustomCheckboxGroup }
                  items = { question.options }
-                 onChange = {(value) => {this.handleOnChange(question, value)}}
+                 onChange = {(value) => {this._handleOnChange(question, value)}}
           />
         )
       }
     }
 
+  }
+
+  _handleOnChange(question, value){
+    this.props.formValues[question.name] = value;
+    this._processSkipLogic(question);
   }
 
   _addQuestion(question){

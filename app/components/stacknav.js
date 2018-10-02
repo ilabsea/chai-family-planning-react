@@ -5,8 +5,6 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image,
-  Colors
 } from 'react-native';
 
 import { createStackNavigator } from  'react-navigation';
@@ -26,11 +24,7 @@ const stackNav = createStackNavigator(
     Video: {
       screen: VideoScreen,
       navigationOptions: ({navigation}) => ({
-        title: "Family Planning",
-        headerLeft:(<TouchableOpacity onPress={() => navigation.openDrawer()}>
-                      <AwesomeIcon name='bars' size={28} style={{color: 'white', paddingLeft: 10}} />
-                    </TouchableOpacity>
-        ),
+        title: "Family Planning"
       })
     },
     About : {
@@ -43,7 +37,7 @@ const stackNav = createStackNavigator(
       screen: SurveyScreen,
       navigationOptions: ({navigation}) => ({
         title: "Survey",
-        headerLeft: (<TouchableOpacity onPress={ navigation.getParam('showScaleAnimationDialog') } style={{paddingLeft: 20}}>
+        headerLeft: (<TouchableOpacity onPress={navigation.getParam('showScaleAnimationDialog') } style={{paddingLeft: 20}}>
               <Icon name="arrow-back" color='white'/>
             </TouchableOpacity>)
       })

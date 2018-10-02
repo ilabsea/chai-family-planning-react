@@ -9,6 +9,11 @@ export const text = {
 
 import { StyleSheet } from 'react-native';
 
+import { Dimensions } from "react-native";
+
+var width = Dimensions.get('window').width;
+var height = Dimensions.get('window').height;
+
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -155,4 +160,22 @@ export default StyleSheet.create({
     bottom: 0,
     right: 0,
   },
+  main: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    backgroundColor: 'hsla(0, 0%, 0%, 1)',
+  },
+  pane: {
+    borderTopColor: 'transparent',
+  },
+  warningBox: {
+    width: Math.min(height, width) * 0.5,
+    height: Math.max(height, width) * 0.1,
+  },
+  confirmBox: {
+    width: Math.min(height, width) * 0.6,
+    height: Math.max(height, width) * 0.2,
+  }
+
+
 })

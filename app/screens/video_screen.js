@@ -6,13 +6,17 @@ import {
   View,
   AsyncStorage,
   TouchableOpacity,
+  Alert,
+  BackHandler
 } from 'react-native';
 
 import Form from '../utils/form';
 import { version } from '../../package.json';
 import styles from '../components/styles';
+import { withNavigationFocus } from 'react-navigation'
 
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from 'react-native-splash-screen';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 export default class VideoScreen extends Component {
 
@@ -21,6 +25,10 @@ export default class VideoScreen extends Component {
     this.state = {
       paused: false
     }
+  }
+
+  componentWillMount() {
+    SplashScreen.hide();
   }
 
   componentDidMount(){
@@ -36,6 +44,7 @@ export default class VideoScreen extends Component {
         AsyncStorage.setItem('VERSION', version);
       }
     });
+
   }
 
   handleOnVideoEnd(){
@@ -56,9 +65,26 @@ export default class VideoScreen extends Component {
            paused={this.state.paused}
            resizeMode={"cover"}
            onEnd={() => this.handleOnVideoEnd() }
-           style={styles.backgroundVideo} />
+           style={styles.backgroundVideo}
+           disableFocus={true}
+            />
         </TouchableOpacity>
       </View>
     )
+  }
+
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    headerLeft:(<TouchableOpacity onPress={() => { navigation.state.params.handleNav() }}>
+                  <AwesomeIcon name='bars' size={28} style={{color: 'white', paddingLeft: 10}} />
+                </TouchableOpacity>
+    )
+  })
+
+  handleNav = () => {
+    this.setState({paused: true});
+    this.props.navigation.openDrawer();
+  }
+  componentWillMount() {
+    this.props.navigation.setParams({handleNav: this.handleNav});
   }
 }

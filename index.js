@@ -2,10 +2,7 @@
 
 import {AppRegistry, Dimensions} from 'react-native';
 import {name as appName} from './app.json';
-
 import React, { Component } from 'react';
-import BackgroundJob from 'react-native-background-job';
-
 import SideMenu from './app/components/side_menu'
 import stackNav from './app/components/stacknav';
 import Task from './app/utils/task';
@@ -20,7 +17,7 @@ const drawernav = createDrawerNavigator(
   },
   {
     contentComponent: SideMenu,
-    drawerWidth: Dimensions.get('window').width - 150,
+    drawerWidth: Math.min(Dimensions.get('window').height, Dimensions.get('window').width) * 0.4
   }
 );
 
