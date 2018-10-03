@@ -23,6 +23,8 @@ import SurveyService from '../services/survey_service';
 import CustomTextInput from '../components/custom_text_input';
 import CustomRadioButtonGroup from '../components/custom_radio_button_group';
 import CustomCheckboxGroup from '../components/custom_checkbox_group';
+import CustomNumericInput from '../components/custom_numeric_input';
+import CustomDatePicker from '../components/custom_date_picker';
 import SkipLogic from '../utils/skip_logic';
 import Expression from '../utils/expression';
 
@@ -197,6 +199,33 @@ class QuestionForm extends Component {
           <Field name = { question.name }
                  component = { CustomTextInput }
                  style = { styles.textInput }
+                 onChange = {(value) => {this._handleOnChange(question, value)}}
+          />
+        );
+      }
+      case 'integer':{
+        return(
+          <Field name = { question.name }
+                 component = { CustomNumericInput }
+                 style = { styles.textInput }
+                 onChange = {(value) => {this._handleOnChange(question, value)}}
+          />
+        );
+      }
+      case 'decimal':{
+        return(
+          <Field name = { question.name }
+                 component = { CustomNumericInput }
+                 style = { styles.textInput }
+                 type={'decimal'}
+                 onChange = {(value) => {this._handleOnChange(question, value)}}
+          />
+        );
+      }
+      case 'date':{
+        return(
+          <Field name = { question.name }
+                 component = { CustomDatePicker }
                  onChange = {(value) => {this._handleOnChange(question, value)}}
           />
         );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
-import { FormInput } from 'react-native-elements';
 
 export default function CustomTextInput(props) {
   const { input, ...inputProps } = props;
@@ -13,6 +12,7 @@ export default function CustomTextInput(props) {
         onBlur={input.onBlur}
         onFocus={input.onFocus}
         value={input.value}
+        autoFocus={true}
       />
     </View>
   );

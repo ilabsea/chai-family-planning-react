@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import styles from '../components/styles';
 
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from 'react-native-splash-screen';
 
 export default class TabletInfoScreen extends Component {
 

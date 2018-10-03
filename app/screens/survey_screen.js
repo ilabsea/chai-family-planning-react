@@ -5,7 +5,8 @@ import {
   View,
   NetInfo,
   BackHandler,
-  Keyboard
+  Keyboard,
+  Alert
 } from 'react-native';
 
 import QuestionForm from './question_form';

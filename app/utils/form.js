@@ -5,7 +5,7 @@ import realm from '../data/schema';
 import Task from './task';
 
 const input = res => res;
-const questionTypes = ['select_one', 'select_multiple', 'text'];
+const questionTypes = ['select_one', 'select_multiple', 'text', 'integer', 'decimal', 'date'];
 
 export default class Form {
 

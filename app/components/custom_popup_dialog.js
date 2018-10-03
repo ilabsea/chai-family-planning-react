@@ -116,4 +116,8 @@ class CustomPopupDialog extends Component {
   }
 }
 
+CustomPopupDialog.defaultProps = {
+  dialogType: 'confirm'
+}
+
 export default CustomPopupDialog;
