@@ -4,6 +4,8 @@ import { readFileAssets } from 'react-native-fs';
 import realm from '../data/schema';
 import Task from './task';
 
+import environment from '../environments/environment';
+
 const input = res => res;
 const questionTypes = ['select_one', 'select_multiple', 'text', 'integer', 'decimal', 'date'];
 
@@ -11,7 +13,7 @@ export default class Form {
 
   static import(){
     console.log('*** Import ***');
-    readFileAssets("forms/form.xls", "ascii").then((res) => {
+    readFileAssets("forms/"+environment['form'], "ascii").then((res) => {
       const wb = XLSX.read(input(res), {type:'binary'});
       for(let i=0; i< wb.SheetNames.length; i++){
         var wsname = wb.SheetNames[i];

@@ -10,6 +10,8 @@ import {
   BackHandler
 } from 'react-native';
 
+import environment from '../environments/environment';
+
 import Form from '../utils/form';
 import { version } from '../../package.json';
 import styles from '../components/styles';
@@ -33,6 +35,7 @@ export default class VideoScreen extends Component {
 
   componentDidMount(){
     SplashScreen.hide();
+    this.player.seek(1000);
 
     var that = this;
     this.props.navigation.addListener('willBlur', (event) => {
@@ -60,7 +63,7 @@ export default class VideoScreen extends Component {
           onPress={() => this.setState({ paused: !this.state.paused })} >
           <Video
            ref={(ref) => { this.player = ref }}
-           source={{uri:'family'}}
+           source={{uri: environment['video']}}
            rate={1.0}
            paused={this.state.paused}
            resizeMode={"cover"}
