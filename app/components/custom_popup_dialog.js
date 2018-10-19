@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  Keyboard
 } from 'react-native';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome5';
@@ -48,6 +49,11 @@ class CustomPopupDialog extends Component {
     this.props.onNavigation.navigate('Video');
   }
 
+  goToNextScreen = () => {
+    this.props.onSave();
+    this.props.onNavigation.navigate('Thank');
+  }
+
   render() {
     return (
       <PopupDialog
@@ -70,6 +76,12 @@ class CustomPopupDialog extends Component {
         {this.props.dialogType == 'warning' &&
           <View style={[styles.container, {margin: 30}]}>
             <Text style={{fontSize: 18}}>Are you sure, you want leave this form ? </Text>
+          </View>
+        }
+
+        {this.props.dialogType == 'confirm-end' &&
+          <View style={[styles.container, {margin: 30}]}>
+            <Text style={{fontSize: 18}}>Do you want to finish this survey ? </Text>
           </View>
         }
 
@@ -113,6 +125,30 @@ class CustomPopupDialog extends Component {
         ]
       )
     }
+
+    if(this.props.dialogType == 'confirm-end'){
+      return(
+        [
+          <DialogButton
+            text="Yes"
+            textStyle={{color: '#1976d2'}}
+            onPress={this.goToNextScreen}
+            buttonStyle={{right: '20%', bottom: 0, position: 'absolute'}}
+            key='button-1'/>,
+
+            <DialogButton
+              text="No"
+              align="right"
+              textStyle={{color: '#1976d2'}}
+              buttonStyle={{bottom: 0, position: 'absolute'}}
+              onPress={() => {
+                this.scaleAnimationDialog.dismiss();
+              }}
+              key='button-2'/>
+        ]
+      )
+    }
+
   }
 }
 

@@ -121,12 +121,15 @@ class QuestionForm extends Component {
   _onSwipeLeft(gestureState) {
     valid = this._validate(question);
     if(valid){
-      this.questionView.slideInRight(150);
-      this.setState({currentIndex: (this.state.currentIndex+1)});
+
       if((this.state.currentIndex+1) == this.state.questions.length){
-        survey = {value: JSON.stringify(this.props.formValues), start_entried_at: this.state.startEntriedAt}
-        SurveyService.save(survey, this.state.isOnline);
+
+        // survey = {value: JSON.stringify(this.props.formValues), start_entried_at: this.state.startEntriedAt}
+        // SurveyService.save(survey, this.state.isOnline);
         this.props.notifyEndForm();
+      }else{
+        this.questionView.slideInRight(150);
+        this.setState({currentIndex: (this.state.currentIndex+1)});
       }
     }else{
       this._handleFieldError();
@@ -248,6 +251,7 @@ class QuestionForm extends Component {
           />
         )
       }
+
     }
 
   }

@@ -69,6 +69,10 @@ export default class SurveyScreen extends Component {
   }
 
   notifyEndForm(){
+    Keyboard.dismiss();
+    this.setState({dialogType: 'confirm-end'});
+    this.popup.showScaleAnimationDialog();
+
     this.setState({editing: false});
   }
 

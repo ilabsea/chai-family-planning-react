@@ -18,6 +18,7 @@ import TabletInfoScreen from "../screens/tablet_info_screen";
 import ConsentScreen from "../screens/consent_screen";
 import CounselingScreen from "../screens/counseling_screen";
 import ReportScreen from "../screens/report_screen";
+import ThankScreen from "../screens/thank_screen";
 
 const stackNav = createStackNavigator(
   {
@@ -64,6 +65,15 @@ const stackNav = createStackNavigator(
       screen: ReportScreen,
       navigationOptions: ({navigation}) => ({
         title: "Data"
+      })
+    },
+    Thank: {
+      screen: ThankScreen,
+      navigationOptions: ({navigation}) => ({
+        title: "Survey",
+        headerLeft: (<TouchableOpacity onPress={() => navigation.navigate("Video") } style={{paddingLeft: 20}}>
+              <Icon name="arrow-back" color='white'/>
+            </TouchableOpacity>)
       })
     },
   },
