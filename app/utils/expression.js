@@ -28,9 +28,15 @@ export default class Expression {
   }
 
   static toObject(rawExpr){
-    leftOperand = rawExpr.match(/\$\{(\w+)\}/)[1];
-    rightOperand = rawExpr.match(/[‘|'|"](\w+)[’|'|"]/)[1];
-    operator = rawExpr.match(/(\>\=|\<\=|\!\=|[\+\-\*\>\<\=\|]|div|or|and|mod|selected)/)[1];
+    result = rawExpr.match(/\$\{(\w+)\}/);
+    leftOperand = result ? result[1] : '';
+
+    result = rawExpr.match(/[‘|'|"](\w+)[’|'|"]/);
+    rightOperand = result ? result[1] : '';
+
+    result = rawExpr.match(/(\>\=|\<\=|\!\=|[\+\-\*\>\<\=\|]|div|or|and|mod|selected)/);
+    operator = result ? result[1] : '';
+
     if(operator == "="){
       operator = "==";
     }
