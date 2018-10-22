@@ -35,7 +35,6 @@ export default class VideoScreen extends Component {
 
   componentDidMount(){
     SplashScreen.hide();
-    this.player.seek(1000);
 
     var that = this;
     this.props.navigation.addListener('willBlur', (event) => {

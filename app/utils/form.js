@@ -34,6 +34,9 @@ export default class Form {
           }
         }
       }
+    })
+    .then((res) => {
+      Task.synCoreData();
     }).catch((err) => {
       console.log('error');
       Alert.alert("importFile Error", "Error " + err.message);
@@ -49,7 +52,6 @@ export default class Form {
         formVersion.to_date = new Date();
       }
       realm.create('Version', {uuid: data[1][0], version: version, from_date: new Date()});
-      Task.synVersion();
     });
   }
 

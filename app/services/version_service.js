@@ -15,13 +15,4 @@ export default class VersionService {
     var result = this.last();
     return `${result.uuid}_${result.version}`;
   }
-
-  static synOfflineData(){
-    versions = this.get();
-    api.post('/versions', {version: versions}).then((response) => {
-      if(response['ok']){
-        BackgroundJob.cancel({jobKey: 'SynVersion'});
-      }
-    });
-  }
 };
