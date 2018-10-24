@@ -7,7 +7,9 @@ import {
   AsyncStorage,
   TouchableOpacity,
   Alert,
-  BackHandler
+  Button,
+  BackHandler,
+  Dimensions
 } from 'react-native';
 
 import environment from '../environments/environment';
@@ -19,14 +21,18 @@ import { withNavigationFocus } from 'react-navigation'
 
 import SplashScreen from 'react-native-splash-screen';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import VideoPlayer from 'react-native-video-player';
+
+const VIMEO_ID = '179859217';
 
 export default class VideoScreen extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
-      paused: false
-    }
+      video: { width: undefined, height: undefined, duration: undefined },
+    };
   }
 
   componentWillMount() {
@@ -46,31 +52,34 @@ export default class VideoScreen extends Component {
         AsyncStorage.setItem('VERSION', version);
       }
     });
-
   }
 
   handleOnVideoEnd(){
     this.player.seek(0);
-    this.props.navigation.navigate("TabletInfo");
+  }
+
+  handleNextButtonPress(){
+    this.player.pause();
+    this.props.navigation.navigate('TabletInfo');
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <VideoPlayer
+          video={{ uri: environment['video'] }}
+          videoWidth={Dimensions.get('window').width}
+          videoHeight={Dimensions.get('window').height-140}
+          duration={this.state.video.duration}
+          ref={r => this.player = r}
+          style={{backgroundColor: 'grey'}}
+        />
         <TouchableOpacity
-          style={styles.fullScreen}
-          onPress={() => this.setState({ paused: !this.state.paused })} >
-          <Video
-           ref={(ref) => { this.player = ref }}
-           source={{uri: environment['video']}}
-           rate={1.0}
-           paused={this.state.paused}
-           resizeMode={"cover"}
-           onEnd={() => this.handleOnVideoEnd() }
-           style={styles.backgroundVideo}
-           disableFocus={true}
-            />
+          style={[ styles.button, { width: '100%', margin: 0} ]}
+          onPress={() => this.handleNextButtonPress() }>
+          <Text style={styles.buttonText}> Next </Text>
         </TouchableOpacity>
+
       </View>
     )
   }
@@ -83,7 +92,7 @@ export default class VideoScreen extends Component {
   })
 
   handleNav = () => {
-    this.setState({paused: true});
+    this.player.pause();
     this.props.navigation.openDrawer();
   }
   componentWillMount() {
