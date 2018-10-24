@@ -69,7 +69,7 @@ export default class VideoScreen extends Component {
         <VideoPlayer
           video={{ uri: environment['video'] }}
           videoWidth={Dimensions.get('window').width}
-          videoHeight={Dimensions.get('window').height-140}
+          videoHeight={Dimensions.get('window').height-130}
           duration={this.state.video.duration}
           ref={r => this.player = r}
           style={{backgroundColor: 'grey'}}

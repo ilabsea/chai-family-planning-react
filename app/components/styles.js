@@ -171,10 +171,14 @@ export default StyleSheet.create({
   warningBox: {
     width: Math.min(height, width) * 0.5,
     height: Math.max(height, width) * 0.1,
+    position: 'absolute',
+    top: '30%'
   },
   confirmBox: {
     width: Math.min(height, width) * 0.6,
     height: Math.max(height, width) * 0.2,
+    position: 'absolute',
+    top: '20%'
   }
 
 
