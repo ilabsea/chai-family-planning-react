@@ -14,6 +14,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.facebook.stetho.Stetho;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.github.yamill.orientation.OrientationPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +36,8 @@ public class MainApplication extends Application implements ReactApplication {
           new RealmReactPackage(),
           new RNFSPackage(),
           new BackgroundJobPackage(),
-          new SplashScreenReactPackage()
+          new SplashScreenReactPackage(),
+          new OrientationPackage()
       );
     }
 
