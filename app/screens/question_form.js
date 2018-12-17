@@ -99,16 +99,20 @@ class QuestionForm extends Component {
       question = this.state.questions[this.state.currentIndex];
       return(
         <Animatable.View style={{flex: 1, backgroundColor: 'transparent'}} ref={this.handleQuestionViewRef}>
-          <View style={{alignItems: 'center'}}>
+          {question.type != 'note' &&
+            <View style={{alignItems: 'center'}}>
               <ImageScalable style={{position: 'absolute'}} source={{ uri: 'asset:/images/'+question.media }} />
-          </View>
+            </View>
+          }
           <ScrollView style={styles.form} keyboardShouldPersistTaps='always'>
             <View style={styles.fieldWrapper}>
               { question.required && <Text style={styles.required}>*</Text> }
               <Text style={styles.fieldName}>{question.label}</Text>
             </View>
             {this._renderQuestionField(question)}
+
           </ScrollView>
+
           <Animated.View style={[styles.errorMessageContainer, {opacity: this.state.fadeIn}]}>
             <Text style={styles.errorMessage}>Sorry this response is required</Text>
           </Animated.View>
@@ -249,6 +253,13 @@ class QuestionForm extends Component {
                  items = { question.options }
                  onChange = {(value) => {this._handleOnChange(question, value)}}
           />
+        )
+      }
+      case 'note':{
+        return(
+          <View>
+              <ImageScalable source={{ uri: 'asset:/images/'+question.media }} width={Dimensions.get('window').width-50} />
+          </View>
         )
       }
 

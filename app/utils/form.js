@@ -7,7 +7,7 @@ import Task from './task';
 import environment from '../environments/environment';
 
 const input = res => res;
-const questionTypes = ['select_one', 'select_multiple', 'text', 'integer', 'decimal', 'date'];
+const questionTypes = ['select_one', 'select_multiple', 'text', 'integer', 'decimal', 'date', 'note'];
 
 export default class Form {
 
