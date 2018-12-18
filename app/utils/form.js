@@ -19,6 +19,7 @@ export default class Form {
         var wsname = wb.SheetNames[i];
         var ws = wb.Sheets[wsname];
         var data = XLSX.utils.sheet_to_json(ws, {header:1});
+        console.log('data : ', data);
         switch (wsname) {
           case 'settings':{
             this.addVersion(data);
@@ -60,23 +61,25 @@ export default class Form {
 
     var order = 0;
     for(r=0; r<data.length; r++){
-      questionType = data[r][0].split(' ');
-      uuid = questionType.length > 1 ? questionType[1] : '';
-      type = questionType[0];
-      if(questionTypes.includes(type)){
-        realm.write(() => {
-          realm.create('Question', {
-            uuid: uuid,
-            type: type,
-            name: data[r][1],
-            label: data[r][2],
-            required: (data[r][3] == 'yes' || data[r][3] == 'true'),
-            relevant: data[r][4],
-            media: data[r][5],
-            order: order
+      if(data[r][0] != undefined){
+        questionType = data[r][0].split(' ');
+        uuid = questionType.length > 1 ? questionType[1] : '';
+        type = questionType[0];
+        if(questionTypes.includes(type)){
+          realm.write(() => {
+            realm.create('Question', {
+              uuid: uuid,
+              type: type,
+              name: data[r][1],
+              label: data[r][2],
+              required: (data[r][3] == 'yes' || data[r][3] == 'true'),
+              relevant: data[r][4],
+              media: data[r][5],
+              order: order
+            });
           });
-        });
-        order = order + 1;
+          order = order + 1;
+        }
       }
     }
   }
@@ -85,13 +88,15 @@ export default class Form {
     this.clearQuestionOption();
     for(r=1; r<data.length; r++){
       realm.write(() => {
-        realm.create('QuestionOption', {
-          question_uuid: data[r][0],
-          name: data[r][1],
-          label: data[r][2],
-          value: data[r][1],
-          media: data[r][3]
-        });
+        if(data[r][0] != undefined){
+          realm.create('QuestionOption', {
+            question_uuid: data[r][0],
+            name: data[r][1],
+            label: data[r][2],
+            value: data[r][1],
+            media: data[r][3]
+          });
+        }
       });
     }
     this.linkOptionsToQuestion();
