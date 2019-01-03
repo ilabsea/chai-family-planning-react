@@ -242,7 +242,10 @@ class QuestionForm extends Component {
           <Field name = { question.name }
                  items={ question.options }
                  component={ CustomRadioButtonGroup }
-                 onChange = {(value) => {this._handleOnChange(question, value)}}
+                 onChange = {(value) => {
+                   this._handleOnChange(question, value);
+                   this._onSwipeLeft({});
+                 }}
           />
         );
       }
@@ -270,6 +273,7 @@ class QuestionForm extends Component {
   _handleOnChange(question, value){
     this.props.formValues[question.name] = value;
     this._processSkipLogic(question);
+
   }
 
   _addQuestion(question){
