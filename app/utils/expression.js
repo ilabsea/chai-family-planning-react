@@ -48,7 +48,6 @@ export default class Expression {
     expressions = [];
     if(expType == 'and' || expType == 'or'){
       expressions = this.parseToBooleanExpression(exprStr, expType).split(BOOL_OPERATOR[expType]);
-      console.log('parse expressions : ', expressions)
     }else{
       expressions = [exprStr];
     }

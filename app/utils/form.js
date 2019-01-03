@@ -19,7 +19,6 @@ export default class Form {
         var wsname = wb.SheetNames[i];
         var ws = wb.Sheets[wsname];
         var data = XLSX.utils.sheet_to_json(ws, {header:1});
-        console.log('data : ', data);
         switch (wsname) {
           case 'settings':{
             this.addVersion(data);
@@ -39,7 +38,6 @@ export default class Form {
     .then((res) => {
       Task.synCoreData();
     }).catch((err) => {
-      console.log('error');
       Alert.alert("importFile Error", "Error " + err.message);
     });
   }

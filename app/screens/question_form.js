@@ -101,7 +101,7 @@ class QuestionForm extends Component {
         <Animatable.View style={{flex: 1, backgroundColor: 'transparent'}} ref={this.handleQuestionViewRef}>
           {question.type != 'note' &&
             <View style={{alignItems: 'center'}}>
-              <ImageScalable style={{position: 'absolute'}} source={{ uri: 'asset:/images/'+question.media }} />
+              <ImageScalable background={true} style={{position: 'absolute', opacity: .2, resizeMode: 'cover' }} source={{ uri: 'asset:/images/'+question.media }} />
             </View>
           }
           <ScrollView style={styles.form} keyboardShouldPersistTaps='always'>
