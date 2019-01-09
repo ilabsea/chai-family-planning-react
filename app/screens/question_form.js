@@ -16,6 +16,7 @@ import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { reduxForm, Field, formValueSelector, getFormValues } from 'redux-form';
 import ImageScalable from 'react-native-scalable-image';
+import HTML from 'react-native-render-html';
 
 import styles from '../components/styles';
 import QuestionService from '../services/question_service';
@@ -30,6 +31,7 @@ import Expression from '../utils/expression';
 
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
+const IMAGES_MAX_WIDTH = Dimensions.get('window').width - 50;
 const questions = QuestionService.get();
 
 class QuestionForm extends Component {
@@ -101,13 +103,15 @@ class QuestionForm extends Component {
         <Animatable.View style={{flex: 1, backgroundColor: 'transparent'}} ref={this.handleQuestionViewRef}>
           {question.type != 'note' &&
             <View style={{alignItems: 'center'}}>
-              <ImageScalable background={true} style={{position: 'absolute', opacity: .2, resizeMode: 'cover' }} source={{ uri: 'asset:/images/'+question.media }} />
+              <ImageScalable background={true}
+                style={{position: 'absolute', opacity: .2, resizeMode: 'cover' }}
+                source={{ uri: 'asset:/images/'+question.media }} />
             </View>
           }
           <ScrollView style={styles.form} keyboardShouldPersistTaps='always'>
             <View style={styles.fieldWrapper}>
               { question.required && <Text style={styles.required}>*</Text> }
-              <Text style={styles.fieldName}>{question.label}</Text>
+              <HTML html={question.label} imagesMaxWidth= {IMAGES_MAX_WIDTH} />
             </View>
             {this._renderQuestionField(question)}
 
