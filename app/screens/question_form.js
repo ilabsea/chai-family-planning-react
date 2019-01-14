@@ -19,6 +19,7 @@ import ImageScalable from 'react-native-scalable-image';
 import HTML from 'react-native-render-html';
 
 import styles from '../components/styles';
+import classesStyles from '../components/html_styles';
 import QuestionService from '../services/question_service';
 import SurveyService from '../services/survey_service';
 import CustomTextInput from '../components/custom_text_input';
@@ -103,18 +104,15 @@ class QuestionForm extends Component {
         <Animatable.View style={{flex: 1, backgroundColor: 'transparent'}} ref={this.handleQuestionViewRef}>
           {question.type != 'note' &&
             <View style={{alignItems: 'center'}}>
-              <ImageScalable background={true}
-                style={{position: 'absolute', opacity: .2, resizeMode: 'cover' }}
-                source={{ uri: 'asset:/images/'+question.media }} />
+              <ImageScalable source={{ uri: 'asset:/images/'+question.media }} />
             </View>
           }
           <ScrollView style={styles.form} keyboardShouldPersistTaps='always'>
             <View style={styles.fieldWrapper}>
               { question.required && <Text style={styles.required}>*</Text> }
-              <HTML html={question.label} imagesMaxWidth= {IMAGES_MAX_WIDTH} />
+              <HTML html={question.label} classesStyles={classesStyles} imagesMaxWidth= {IMAGES_MAX_WIDTH} />
             </View>
             {this._renderQuestionField(question)}
-
           </ScrollView>
 
           <Animated.View style={[styles.errorMessageContainer, {opacity: this.state.fadeIn}]}>

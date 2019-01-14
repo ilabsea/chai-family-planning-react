@@ -4,7 +4,7 @@ export const colors = {
 }
 
 export const text = {
-  fontSize: 18
+  fontSize: 24
 }
 
 import { StyleSheet } from 'react-native';
@@ -20,7 +20,7 @@ export default StyleSheet.create({
   },
   header:{
     backgroundColor: colors.skyBlue,
-    fontSize: 24,
+    fontSize: 36,
     paddingVertical: 10,
     paddingHorizontal: 10,
     color: 'white'
@@ -47,12 +47,12 @@ export default StyleSheet.create({
   },
   form: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 20
   },
   fieldWrapper: {
     flexDirection: 'row',
     paddingBottom: 10,
-    paddingTop: 10
+    paddingTop: 20
   },
   fieldName: {
     fontSize: text.fontSize,
@@ -70,11 +70,12 @@ export default StyleSheet.create({
     fontWeight: 'bold'
   },
   menuBrand: {
-    fontSize: 24,
+    fontSize: text.fontSize,
     color: 'white'
   },
   textInput: {
     borderColor: 'black',
+    fontSize: text.fontSize,
     borderBottomWidth: 1
   },
   intro: {
@@ -111,7 +112,7 @@ export default StyleSheet.create({
     color: colors.skyBlue,
   },
   headerPopup: {
-    fontSize: 22,
+    fontSize: text.fontSize,
     color: 'black',
     fontWeight: 'bold',
     marginBottom: 20,
@@ -132,10 +133,10 @@ export default StyleSheet.create({
     padding: 10,
     borderRadius: 10,
     color: 'white',
-    fontSize: 18
+    fontSize: text.fontSize
   },
   thankMessage:{
-    fontSize: 22,
+    fontSize: text.fontSize,
     color: 'black',
     paddingBottom: 20
   },
@@ -144,7 +145,7 @@ export default StyleSheet.create({
     paddingHorizontal: 20,
     color: 'black',
     textAlign: 'justify',
-    fontSize: 18
+    fontSize: text.fontSize
   },
   backgroundVideo: {
     position: 'absolute',
