@@ -12,6 +12,7 @@ export default StyleSheet.create({
     fontSize: text.fontSize,
     margin: 10,
     width: Dimensions.get('window').width - 70,
+    lineHeight: 35
   },
   'title': {
     fontSize: 40,
@@ -21,5 +22,11 @@ export default StyleSheet.create({
   },
   'indent': {
     paddingLeft: 30
+  },
+  'circleUl': {
+    fontSize: text.fontSize,
+  },
+  'squareUl': {
+    fontSize: text.fontSize,
   }
 })

@@ -18,9 +18,13 @@ import { connect } from 'react-redux';
 import { reduxForm, Field, formValueSelector, getFormValues } from 'redux-form';
 import ImageScalable from 'react-native-scalable-image';
 import HTML from 'react-native-render-html';
+import { readFileAssets } from 'react-native-fs';
+
 
 import styles from '../components/styles';
 import classesStyles from '../components/html_styles';
+import * as ListPrefixes from '../components/list_prefixes';
+
 import QuestionService from '../services/question_service';
 import SurveyService from '../services/survey_service';
 import CustomTextInput from '../components/custom_text_input';
@@ -34,6 +38,7 @@ import Expression from '../utils/expression';
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
 const IMAGES_MAX_WIDTH = Dimensions.get('window').width - 50;
+const ListPrefixUl = ListPrefixes.UL;
 const questions = QuestionService.get();
 
 class QuestionForm extends Component {
@@ -63,6 +68,15 @@ class QuestionForm extends Component {
   componentDidMount(){
     this.setState({startEntriedAt: new Date()});
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
+    this.readHTMLFile();
+  }
+
+  readHTMLFile(){
+    question = this.state.questions[this.state.currentIndex];
+    readFileAssets("html/" + question.label, "ascii")
+    .then((res) => {
+      question.label = res;
+    })
   }
 
   componentWillUnmount() {
@@ -101,13 +115,19 @@ class QuestionForm extends Component {
       )
     }else{
       question = this.state.questions[this.state.currentIndex];
+
       return(
         <Animatable.View style={{flex: 1, backgroundColor: 'transparent'}} ref={this.handleQuestionViewRef}>
           <ScrollView style={styles.form} keyboardShouldPersistTaps='always'>
             <View style={styles.fieldWrapper}>
               { question.required && <Text style={styles.required}>*</Text> }
             </View>
-            <HTML html={question.label} classesStyles={classesStyles} imagesMaxWidth= {IMAGES_MAX_WIDTH} />
+            <HTML
+              html={question.label}
+              classesStyles={classesStyles}
+              imagesMaxWidth= {IMAGES_MAX_WIDTH}
+              listsPrefixesRenderers={ListPrefixUl}
+            />
 
             {this._renderQuestionField(question)}
           </ScrollView>
