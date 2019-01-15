@@ -30,8 +30,8 @@ class Radio extends Component {
             <CheckBox title={label} onPress={this.handlePress}
               checkedIcon='dot-circle-o' uncheckedIcon='circle-o'
               checked={checked}
-              textStyle={{fontSize: 18, lineHeight: 30}}
-              containerStyle={{height: 80, justifyContent: 'center'}}
+              textStyle={{fontSize: 24, lineHeight: 30}}
+              containerStyle={{height: 90, justifyContent: 'center'}}
              />
              { media &&
                <View style={{alignItems:'center'}}>

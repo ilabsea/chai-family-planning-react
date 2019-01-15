@@ -54,8 +54,8 @@ class CustomCheckBox extends Component {
             <CheckBox title={label}
                       checked={checked}
                       onPress={this.handlePress}
-                      textStyle={{fontSize: 18, lineHeight: 30}}
-                      containerStyle={{height: 80, justifyContent: 'center'}} 
+                      textStyle={{fontSize: 24, lineHeight: 30}}
+                      containerStyle={{height: 80, justifyContent: 'center'}}
              />
              { media &&
                <View style={{alignItems:'center'}}>

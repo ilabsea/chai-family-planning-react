@@ -17,7 +17,7 @@ export default StyleSheet.create({
   'title': {
     fontSize: 40,
     marginBottom: 10,
-    marginLeft: 0,
+    marginLeft: 15,
     marginTop: 15,
   },
   'indent': {
@@ -28,5 +28,5 @@ export default StyleSheet.create({
   },
   'squareUl': {
     fontSize: text.fontSize,
-  }
+  },
 })

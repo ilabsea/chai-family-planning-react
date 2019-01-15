@@ -25,12 +25,12 @@ export default class ConsentScreen extends Component {
           <TouchableOpacity
             style={styles.button}
             onPress={() => navigate("Survey")}>
-            <Text style={styles.buttonText}> I agree </Text>
+            <Text style={styles.buttonText}> Agree </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button, styles.noButton]}
             onPress={() => navigate("Counseling")}>
-            <Text style={[styles.buttonText, styles.noButtonText]}> No </Text>
+            <Text style={[styles.buttonText, styles.noButtonText]}> Disagree </Text>
           </TouchableOpacity>
         </View>
       </View>
