@@ -67,6 +67,7 @@ export default class VideoScreen extends Component {
 
   handleNextButtonPress(){
     this.player.pause();
+    this.showLayer();
     this.props.navigation.navigate('TabletInfo');
   }
 
@@ -77,11 +78,19 @@ export default class VideoScreen extends Component {
 
   resumePlayeHandler = () => {
     this.player.resume();
-    this.setState({showLayer: !this.state.showLayer});
+    this.hideLayer();
   }
 
   playPressHandler = () => {
     this.setState({showLayer: !this.state.showLayer});
+  }
+
+  hideLayer = () => {
+    this.setState({showLayer: false});
+  }
+
+  showLayer = () => {
+    this.setState({showLayer: true});
   }
 
   render() {
@@ -132,6 +141,7 @@ export default class VideoScreen extends Component {
 
   handleNav = () => {
     this.player.pause();
+    this.showLayer();
     this.props.navigation.openDrawer();
   }
   componentWillMount() {
