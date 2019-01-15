@@ -48,6 +48,9 @@ export default class SurveyScreen extends Component {
   }
 
   componentDidMount(){
+    // Todo change this title
+    // this.props.navigation.setParams({title: 'test Survey'});
+
     this.setState({startEntriedAt: new Date()});
     this.props.navigation.setParams({showScaleAnimationDialog: this.showScaleAnimationDialog});
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);

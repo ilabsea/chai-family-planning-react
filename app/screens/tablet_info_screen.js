@@ -10,13 +10,6 @@ import styles from '../components/styles';
 import SplashScreen from 'react-native-splash-screen';
 
 export default class TabletInfoScreen extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-  componentDidMount(){
-    // SplashScreen.hide();
-  }
   render() {
     const { navigate } = this.props.navigation;
 
