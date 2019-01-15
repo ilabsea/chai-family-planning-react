@@ -19,7 +19,6 @@ import { version } from '../../package.json';
 import styles from '../components/styles';
 import { withNavigationFocus } from 'react-navigation'
 
-import SplashScreen from 'react-native-splash-screen';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import VideoPlayer from 'react-native-video-player';
 import Orientation from 'react-native-orientation';
@@ -38,7 +37,6 @@ export default class VideoScreen extends Component {
   }
 
   componentDidMount(){
-    SplashScreen.hide();
     var that = this;
     this.subs = [
       this.props.navigation.addListener('willBlur', (event) => {
