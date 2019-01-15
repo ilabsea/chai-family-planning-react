@@ -93,25 +93,18 @@ export default StyleSheet.create({
   },
   button: {
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: colors.skyBlue,
     width: '40%',
-    height: 50,
+    height: 70,
     alignSelf: 'flex-end',
     padding: 10,
     margin: 10
-  },
-  noButton: {
-    backgroundColor: 'white',
-    borderColor: colors.skyBlue,
-    borderWidth: 2
   },
   buttonText: {
     color: 'white',
     fontSize: text.fontSize,
     fontWeight: 'bold'
-  },
-  noButtonText:{
-    color: colors.skyBlue,
   },
   headerPopup: {
     fontSize: text.fontSize,

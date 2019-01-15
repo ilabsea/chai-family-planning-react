@@ -7,7 +7,8 @@ import {
   ScrollView,
   Animated,
   NetInfo,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
 
 import * as Animatable from 'react-native-animatable';
@@ -111,6 +112,14 @@ class QuestionForm extends Component {
             {this._renderQuestionField(question)}
           </ScrollView>
 
+          <View style={{justifyContent: 'flex-end'}}>
+            <TouchableOpacity
+              style={[styles.button]}
+              onPress={() => this._onSwipeLeft({})}>
+              <Text style={[styles.buttonText]}> Next </Text>
+            </TouchableOpacity>
+          </View>
+
           <Animated.View style={[styles.errorMessageContainer, {opacity: this.state.fadeIn}]}>
             <Text style={styles.errorMessage}>Sorry this response is required</Text>
           </Animated.View>
@@ -125,9 +134,6 @@ class QuestionForm extends Component {
     if(valid){
 
       if((this.state.currentIndex+1) == this.state.questions.length){
-
-        // survey = {value: JSON.stringify(this.props.formValues), start_entried_at: this.state.startEntriedAt}
-        // SurveyService.save(survey, this.state.isOnline);
         this.props.notifyEndForm();
       }else{
         this.questionView.slideInRight(150);
