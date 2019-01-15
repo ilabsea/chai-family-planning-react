@@ -9,7 +9,6 @@ import {
   Alert,
   Button,
   BackHandler,
-  Dimensions
 } from 'react-native';
 
 import environment from '../environments/environment';
@@ -22,9 +21,9 @@ import { withNavigationFocus } from 'react-navigation'
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import VideoPlayer from 'react-native-video-player';
 import Orientation from 'react-native-orientation';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const VIMEO_ID = '179859217';
-const dimensions = Dimensions.get('window');
 
 export default class VideoScreen extends Component {
 
@@ -32,7 +31,7 @@ export default class VideoScreen extends Component {
     super(props);
 
     this.state = {
-      video: { width: dimensions.width, height: dimensions.height, duration: undefined },
+      showLayer: false,
     };
   }
 
@@ -55,6 +54,7 @@ export default class VideoScreen extends Component {
         AsyncStorage.setItem('VERSION', version);
       }
     });
+
   }
 
   componentWillUnmount() {
@@ -70,23 +70,49 @@ export default class VideoScreen extends Component {
     this.props.navigation.navigate('TabletInfo');
   }
 
-  updateLayout = () => {
-    const {width, height} = Dimensions.get('window');
+  updateLayout = (event) => {
+    const { width, height } = event.nativeEvent.layout;
     this.setState({width, height});
   }
 
+  resumePlayeHandler = () => {
+    this.player.resume();
+    this.setState({showLayer: !this.state.showLayer});
+  }
+
+  playPressHandler = () => {
+    this.setState({showLayer: !this.state.showLayer});
+  }
+
   render() {
+    const layerContent = (
+      <TouchableOpacity onPress={this.resumePlayeHandler} style={componentStyles.layer}>
+        <View style={[componentStyles.innerLayer, componentStyles.layer]}></View>
+
+        <View style={componentStyles.iconContainer}>
+          <Icon size={32} name='md-play' color='#fff' style={{marginLeft: 5}} />
+        </View>
+      </TouchableOpacity>
+    );
+
     return (
-      <View style={styles.container} onLayout={this.updateLayout}>
-        <VideoPlayer
-          video={{ uri: environment['video'] }}
-          videoWidth={parseInt(this.state.width, 10)}
-          videoHeight={parseInt(this.state.height, 10) - 130}
-          duration={this.state.video.duration}
-          ref={r => this.player = r}
-          resizeMode="stretch"
-          style={{backgroundColor: 'grey'}}
-        />
+      <View style={styles.container}>
+        <View style={[styles.container, componentStyles.container]} onLayout={this.updateLayout}>
+          { this.state.showLayer && layerContent }
+
+          <VideoPlayer
+            video={{ uri: environment['video'] }}
+            videoWidth={this.state.width}
+            videoHeight={this.state.height}
+            ref={r => this.player = r}
+            resizeMode="stretch"
+            hideControlsOnStart={true}
+            pauseOnPress={true}
+            onPlayPress={this.playPressHandler}
+            style={{backgroundColor: 'grey'}}
+          />
+        </View>
+
         <TouchableOpacity
           style={[ styles.button, { width: '100%', margin: 0} ]}
           onPress={() => this.handleNextButtonPress() }>
@@ -112,3 +138,31 @@ export default class VideoScreen extends Component {
     this.props.navigation.setParams({handleNav: this.handleNav});
   }
 }
+
+const componentStyles = StyleSheet.create({
+  container: {
+    position: 'relative'
+  },
+  innerLayer: {
+    backgroundColor: 'rgba(52, 52, 52, 0.5)',
+  },
+  layer: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    zIndex: 999,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  iconContainer: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    zIndex: 1000,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.7)'
+  }
+});
