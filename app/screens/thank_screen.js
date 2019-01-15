@@ -6,7 +6,10 @@ import {
   View,
   Button,
   BackHandler,
-  Alert
+  Alert,
+  TouchableOpacity,
+  BackAndroid
+
 } from 'react-native';
 
 import styles from '../components/styles';
@@ -42,7 +45,18 @@ export default class ThankScreen extends Component {
     return (
       <View key={'end'} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
         <Text style={styles.thankMessage}>Thank you !</Text>
-        <Button title="Watch Video Again" onPress={() => this.props.navigation.navigate("Video", {replay: true})}></Button>
+        <View style={styles.buttonView}>
+          <TouchableOpacity
+            style={[styles.button, {alignSelf: 'flex-start'}]}
+            onPress={() => this.props.navigation.navigate("Video", {replay: true})}>
+            <Text style={styles.buttonText}> Start New Session </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.button,{alignSelf: 'flex-start'}]}
+            onPress={() => BackAndroid.exitApp()}>
+            <Text style={[styles.buttonText, styles.noButtonText]}> Exit App </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
