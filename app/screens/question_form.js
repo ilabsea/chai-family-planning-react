@@ -102,16 +102,12 @@ class QuestionForm extends Component {
       question = this.state.questions[this.state.currentIndex];
       return(
         <Animatable.View style={{flex: 1, backgroundColor: 'transparent'}} ref={this.handleQuestionViewRef}>
-          {question.type != 'note' &&
-            <View style={{alignItems: 'center'}}>
-              <ImageScalable source={{ uri: 'asset:/images/'+question.media }} />
-            </View>
-          }
           <ScrollView style={styles.form} keyboardShouldPersistTaps='always'>
             <View style={styles.fieldWrapper}>
               { question.required && <Text style={styles.required}>*</Text> }
-              <HTML html={question.label} classesStyles={classesStyles} imagesMaxWidth= {IMAGES_MAX_WIDTH} />
             </View>
+            <HTML html={question.label} classesStyles={classesStyles} imagesMaxWidth= {IMAGES_MAX_WIDTH} />
+
             {this._renderQuestionField(question)}
           </ScrollView>
 

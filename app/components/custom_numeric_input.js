@@ -34,6 +34,7 @@ export default class CustomNumericInput extends Component {
           keyboardType='numeric'
           autoFocus={true}
           type={input.type}
+          maxLength = {9}
           onEndEditing={this.handleOnEndEditing}
         />
       </View>

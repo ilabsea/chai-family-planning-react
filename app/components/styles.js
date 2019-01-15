@@ -52,7 +52,9 @@ export default StyleSheet.create({
   fieldWrapper: {
     flexDirection: 'row',
     paddingBottom: 10,
-    paddingTop: 20
+    paddingTop: 30,
+    position: 'absolute',
+    left: 10
   },
   fieldName: {
     fontSize: text.fontSize,

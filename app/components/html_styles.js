@@ -11,13 +11,13 @@ export default StyleSheet.create({
   'wrapper': {
     fontSize: text.fontSize,
     margin: 10,
-    width: Dimensions.get('window').width - 50,
+    width: Dimensions.get('window').width - 70,
   },
   'title': {
     fontSize: 40,
     marginBottom: 10,
-    marginLeft: -25,
-    marginTop: 0
+    marginLeft: 0,
+    marginTop: 15,
   },
   'indent': {
     paddingLeft: 30
