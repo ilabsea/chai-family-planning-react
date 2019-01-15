@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.chai",
+    package = "org.instedd.ilabsea.choices",
 )
 
 android_resource(
     name = "res",
-    package = "com.chai",
+    package = "org.instedd.ilabsea.choices",
     res = "src/main/res",
 )
 
