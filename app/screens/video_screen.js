@@ -31,8 +31,7 @@ export default class VideoScreen extends Component {
     super(props);
 
     this.state = {
-      showLayer: false,
-      videoStarted: false
+      showLayer: false
     };
   }
 
@@ -91,7 +90,7 @@ export default class VideoScreen extends Component {
   }
 
   showLayer = () => {
-    this.setState({showLayer: this.videoStarted && true});
+    this.setState({showLayer: true});
   }
 
   render() {
@@ -118,7 +117,6 @@ export default class VideoScreen extends Component {
             resizeMode="stretch"
             hideControlsOnStart={true}
             pauseOnPress={true}
-            onStart={() => this.setState({videoStarted: true})}
             onPlayPress={this.playPressHandler}
             style={{backgroundColor: 'grey'}}
           />
