@@ -8,7 +8,8 @@ import {
   Animated,
   NetInfo,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  ToastAndroid
 } from 'react-native';
 
 import * as Animatable from 'react-native-animatable';
@@ -51,6 +52,7 @@ class QuestionForm extends Component {
       questions: questions.filter((question) => { return !question.relevant }),
       fadeIn: new Animated.Value(0),
       fadeOut: new Animated.Value(1),
+      zIndex: 0,
       startEntriedAt: new Date(),
       currentIndex: 0,
       isOnline: true,
@@ -147,10 +149,6 @@ class QuestionForm extends Component {
               <Text style={[styles.buttonText]}> Next </Text>
             </TouchableOpacity>
           </View>
-
-          <Animated.View style={[styles.errorMessageContainer, {opacity: this.state.fadeIn}]}>
-            <Text style={styles.errorMessage}>Sorry this response is required</Text>
-          </Animated.View>
         </Animatable.View>
       )
     }
@@ -168,7 +166,7 @@ class QuestionForm extends Component {
         this.updateToolbarTitle(this.state.currentIndex+1);
       }
     }else{
-      this._handleFieldError();
+      ToastAndroid.showWithGravity('Sorry this response is required', ToastAndroid.SHORT, ToastAndroid.CENTER)
     }
   }
 
@@ -177,28 +175,6 @@ class QuestionForm extends Component {
     this.questionView.slideInLeft(150);
     this.setState({currentIndex: (this.state.currentIndex-1)});
     this.updateToolbarTitle(this.state.currentIndex-1);
-  }
-
-  _handleFieldError(){
-    this.state.fadeIn.setValue(0)
-    Animated.timing(
-      this.state.fadeIn,
-      {
-        toValue: 1,
-        duration: 100,
-      }
-    ).start(() =>
-      {
-        this.state.fadeIn.setValue(1)
-        Animated.timing(
-           this.state.fadeIn,
-           {
-             toValue: 0,
-             duration: 3000,
-           }
-        ).start();
-      }
-    );
   }
 
   _validate(question){
