@@ -37,7 +37,7 @@ import Expression from '../utils/expression';
 
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
-const IMAGES_MAX_WIDTH = Dimensions.get('window').width - 150;
+const IMAGES_MAX_WIDTH = Dimensions.get('window').width - 48;
 const ListPrefixUl = ListPrefixes.UL;
 const questions = QuestionService.get();
 
@@ -63,7 +63,6 @@ class QuestionForm extends Component {
 
   updateToolbarTitle(index) {
     let title = this.state.questions[index].label.match(/<title[^]*>[^]*<\/title>/ig);
-
     title = !!title ? this.removeHtmlTag(title[0]) : 'Survey';
     this.props.updateToolbarTitle(title);
   }
@@ -121,7 +120,7 @@ class QuestionForm extends Component {
       )
     }else{
       question = this.state.questions[this.state.currentIndex];
-      html = question.label.replace(/<title[^]*>[^]*<\/title>/ig, '');
+      let html = question.label.replace(/<title[^]*>[^]*<\/title>/ig, '');
 
       return(
         <Animatable.View style={{flex: 1, backgroundColor: 'transparent'}} ref={this.handleQuestionViewRef}>
@@ -162,8 +161,8 @@ class QuestionForm extends Component {
         this.props.notifyEndForm();
       }else{
         this.questionView.slideInRight(150);
-        this.setState({currentIndex: (this.state.currentIndex+1)});
         this.updateToolbarTitle(this.state.currentIndex+1);
+        this.setState({currentIndex: (this.state.currentIndex+1)});
       }
     }else{
       ToastAndroid.showWithGravity('Sorry this response is required', ToastAndroid.SHORT, ToastAndroid.CENTER)
@@ -173,8 +172,8 @@ class QuestionForm extends Component {
   _onSwipeRight(gestureState) {
     if(this.state.currentIndex == 0) return;
     this.questionView.slideInLeft(150);
-    this.setState({currentIndex: (this.state.currentIndex-1)});
     this.updateToolbarTitle(this.state.currentIndex-1);
+    this.setState({currentIndex: (this.state.currentIndex-1)});
   }
 
   _validate(question){
