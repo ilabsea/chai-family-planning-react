@@ -5,7 +5,6 @@ import {
   Text,
   View,
   Button,
-  BackHandler,
   Alert,
   TouchableOpacity,
   BackAndroid
@@ -44,7 +43,9 @@ export default class ThankScreen extends Component {
   render() {
     return (
       <View key={'end'} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={styles.thankMessage}>Thank you !</Text>
+        <View style={{flex:1 ,justifyContent: 'center'}}>
+          <Text style={styles.thankMessage}>Thank you !</Text>
+        </View>
         <View style={styles.buttonView}>
           <TouchableOpacity
             style={[styles.button, {alignSelf: 'flex-start'}]}
@@ -53,7 +54,7 @@ export default class ThankScreen extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button,{alignSelf: 'flex-start'}]}
-            onPress={() => BackAndroid.exitApp()}>
+            onPress={() => BackHandler.exitApp()}>
             <Text style={[styles.buttonText, styles.noButtonText]}> Exit App </Text>
           </TouchableOpacity>
         </View>

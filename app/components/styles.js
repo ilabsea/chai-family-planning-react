@@ -131,9 +131,8 @@ export default StyleSheet.create({
     fontSize: text.fontSize
   },
   thankMessage:{
-    fontSize: 40,
+    fontSize: 50,
     color: 'black',
-    paddingBottom: 20
   },
   aboutText: {
     paddingVertical: 10,

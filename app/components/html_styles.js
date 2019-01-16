@@ -11,7 +11,7 @@ export default StyleSheet.create({
   'wrapper': {
     fontSize: text.fontSize,
     margin: 10,
-    width: Dimensions.get('window').width - 70,
+    width: Dimensions.get('window').width - 75,
     lineHeight: 35
   },
   'title': {

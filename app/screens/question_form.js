@@ -37,7 +37,7 @@ import Expression from '../utils/expression';
 
 import GestureRecognizer, {swipeDirections} from 'react-native-swipe-gestures';
 
-const IMAGES_MAX_WIDTH = Dimensions.get('window').width - 50;
+const IMAGES_MAX_WIDTH = Dimensions.get('window').width - 150;
 const ListPrefixUl = ListPrefixes.UL;
 const questions = QuestionService.get();
 
@@ -115,13 +115,27 @@ class QuestionForm extends Component {
       )
     }else{
       question = this.state.questions[this.state.currentIndex];
+      html = `<div class='wrapper'>
+<h3 class='title'>
+8. Identifying Preferences
+</h3>
+<img src="asset:/images/10_IUD.png" width=200 height=200/>
 
+<ul>
+<li>Talk to the client about what she does or doesn't want in her birth spacing methods
+    <img src="asset:/images/8_identifying_preferences.png"/>
+</li>
+<li>Discuss her responses, and help her to identify one or more methods that appeal to her. </li>
+<li>Once she has identified some methods that might suit her needs, SWIPE to go to the next screen. </li>
+</ul>
+</div>`
       return(
         <Animatable.View style={{flex: 1, backgroundColor: 'transparent'}} ref={this.handleQuestionViewRef}>
           <ScrollView style={styles.form} keyboardShouldPersistTaps='always'>
             <View style={styles.fieldWrapper}>
               { question.required && <Text style={styles.required}>*</Text> }
             </View>
+
             <HTML
               html={question.label}
               classesStyles={classesStyles}
