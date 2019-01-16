@@ -85,6 +85,12 @@ class CustomPopupDialog extends Component {
           </View>
         }
 
+        {this.props.dialogType == 'confirm-exit' &&
+          <View style={[styles.container, {margin: 30}]}>
+            <Text style={{fontSize: 18}}>Are you sure you want to exit? </Text>
+          </View>
+        }
+
       </PopupDialog>
     )
   }
@@ -133,6 +139,29 @@ class CustomPopupDialog extends Component {
             text="Yes"
             textStyle={{color: '#1976d2'}}
             onPress={this.goToNextScreen}
+            buttonStyle={{right: '20%', bottom: 0, position: 'absolute'}}
+            key='button-1'/>,
+
+            <DialogButton
+              text="No"
+              align="right"
+              textStyle={{color: '#1976d2'}}
+              buttonStyle={{bottom: 0, position: 'absolute'}}
+              onPress={() => {
+                this.scaleAnimationDialog.dismiss();
+              }}
+              key='button-2'/>
+        ]
+      )
+    }
+
+    if(this.props.dialogType == 'confirm-exit'){
+      return(
+        [
+          <DialogButton
+            text="Yes"
+            textStyle={{color: '#1976d2'}}
+            onPress={this.props.onSave}
             buttonStyle={{right: '20%', bottom: 0, position: 'absolute'}}
             key='button-1'/>,
 

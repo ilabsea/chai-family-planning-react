@@ -7,11 +7,12 @@ import {
   Button,
   Alert,
   TouchableOpacity,
-  BackAndroid
-
+  BackHandler
 } from 'react-native';
 
 import styles from '../components/styles';
+import CustomPopupDialog from '../components/custom_popup_dialog';
+
 
 export default class ThankScreen extends Component {
   _didFocusSubscription;
@@ -19,6 +20,9 @@ export default class ThankScreen extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      dialogType: 'confirm-exit',
+    }
     this._didFocusSubscription = props.navigation.addListener('didFocus', payload =>
       BackHandler.addEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
     );
@@ -54,10 +58,16 @@ export default class ThankScreen extends Component {
           </TouchableOpacity>
           <TouchableOpacity
             style={[styles.button,{alignSelf: 'flex-start'}]}
-            onPress={() => BackHandler.exitApp()}>
+            onPress={() => { this.popup.showScaleAnimationDialog() }}>
             <Text style={[styles.buttonText, styles.noButtonText]}> Exit App </Text>
           </TouchableOpacity>
         </View>
+
+        <CustomPopupDialog onRef={ref => (this.popup = ref)}
+          onNavigation={this.props.navigation}
+          onSave={() => { BackHandler.exitApp() }}
+          dialogType = {this.state.dialogType}
+        />
       </View>
     )
   }
