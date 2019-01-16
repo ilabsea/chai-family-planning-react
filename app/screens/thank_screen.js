@@ -46,10 +46,10 @@ export default class ThankScreen extends Component {
 
   render() {
     return (
-      <View key={'end'} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-        <View style={{flex:1 ,justifyContent: 'center'}}>
-          <Text style={styles.thankMessage}>Thank you !</Text>
-        </View>
+        <View key={'end'} style={styles.mainScreen}>
+          <View style={[styles.container, { justifyContent: 'center'}]}>
+            <Text style={styles.thankMessage}>Thank you !</Text>
+          </View>
         <View style={styles.buttonView}>
           <TouchableOpacity
             style={[styles.button, {alignSelf: 'flex-start'}]}

@@ -17,9 +17,11 @@ export default class CounselingScreen extends Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <View style={[styles.container, styles.centerItems]}>
-        <Text style={styles.intro}>Please give her birth spacing counseling without using app</Text>
-        <View style={[styles.container, {justifyContent: 'flex-end'}]}>
+      <View style={styles.mainScreen}>
+        <View style={[styles.container, { justifyContent: 'center', alignItems: 'center'}]}>
+          <Text style={[styles.intro , { textAlign: 'center'} ]}>Please give her birth spacing counseling without using app</Text>
+        </View>
+        <View style={styles.buttonView}>
           <TouchableOpacity
             style={[styles.button, {width: '100%', marginRight: 0}]}
             onPress={() => navigate("Video")}>

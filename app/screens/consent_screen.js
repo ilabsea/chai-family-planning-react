@@ -19,8 +19,10 @@ export default class ConsentScreen extends Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <View style={[styles.container]}>
-        <Text style={styles.intro}>Display the consent text</Text>
+      <View style={styles.mainScreen}>
+        <View style={[styles.container, { justifyContent: 'center'}]}>
+          <Text style={styles.intro}>Display the consent text</Text>
+        </View>
         <View style={styles.buttonView}>
           <TouchableOpacity
             style={styles.button}

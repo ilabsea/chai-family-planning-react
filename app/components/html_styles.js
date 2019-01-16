@@ -14,12 +14,6 @@ export default StyleSheet.create({
     width: Dimensions.get('window').width - 75,
     lineHeight: 35
   },
-  'title': {
-    fontSize: 40,
-    marginBottom: 10,
-    marginLeft: 15,
-    marginTop: 15,
-  },
   'indent': {
     paddingLeft: 30
   },

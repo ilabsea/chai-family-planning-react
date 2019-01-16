@@ -18,6 +18,11 @@ export default StyleSheet.create({
   container: {
     flex: 1,
   },
+  mainScreen:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   header:{
     backgroundColor: colors.skyBlue,
     fontSize: 36,
@@ -81,13 +86,10 @@ export default StyleSheet.create({
     borderBottomWidth: 1
   },
   intro: {
-    fontSize: 22,
+    fontSize: 40,
     color: 'black',
-    textAlign: 'center',
-    marginTop: 20
   },
   buttonView: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center'
   },

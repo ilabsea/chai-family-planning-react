@@ -7,16 +7,16 @@ import {
 } from 'react-native';
 import styles from '../components/styles';
 
-import SplashScreen from 'react-native-splash-screen';
-
 export default class TabletInfoScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
 
     return (
-      <View style={styles.container}>
-        <Text style={styles.intro}>Please hand the tablet to provider</Text>
-        <View style={[styles.container, {justifyContent: 'flex-end'}]}>
+      <View style={styles.mainScreen}>
+        <View style={[styles.container, { justifyContent: 'center'}]}>
+          <Text style={styles.intro}>Please hand the tablet to provider</Text>
+        </View>
+        <View style={styles.buttonView}>
           <TouchableOpacity
             style={[ styles.button, { width: '100%', marginRight: 0 } ]}
             onPress={() => navigate("Consent")}>
