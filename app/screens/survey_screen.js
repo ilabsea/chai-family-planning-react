@@ -76,12 +76,9 @@ export default class SurveyScreen extends Component {
     Keyboard.dismiss();
     this.setState({dialogType: 'confirm-end'});
     this.popup.showScaleAnimationDialog();
-
-    this.setState({editing: false});
   }
 
   render() {
-    const { editing } = this.state;
     return (
       <View style={styles.container}>
         <Provider store={store}>
@@ -103,15 +100,7 @@ export default class SurveyScreen extends Component {
   _handleBack(){
     Keyboard.dismiss();
     formValues = this.refs.survey.selector.props.formValues;
-    if(this.state.editing == false){
-      this.props.navigation.navigate("Video");
-    }else{
-      if(Object.keys(formValues).length == 0){
-        this.setState({dialogType: 'warning'});
-      }else{
-        this.setState({dialogType: 'confirm'})
-      }
-      this.popup.showScaleAnimationDialog();
-    }
+    this.setState({dialogType: 'confirm'});
+    this.popup.showScaleAnimationDialog();
   }
 }
