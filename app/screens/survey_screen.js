@@ -48,15 +48,16 @@ export default class SurveyScreen extends Component {
   }
 
   componentDidMount(){
-    // Todo change this title
-    // this.props.navigation.setParams({title: 'test Survey'});
-
     this.setState({startEntriedAt: new Date()});
     this.props.navigation.setParams({showScaleAnimationDialog: this.showScaleAnimationDialog});
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
     this._willBlurSubscription = this.props.navigation.addListener('willBlur', payload =>
       BackHandler.removeEventListener('hardwareBackPress', this.onBackButtonPressAndroid)
     );
+  }
+
+  updateToolbarTitle = (title) => {
+    this.props.navigation.setParams({title: title});
   }
 
   onBackButtonPressAndroid = () => {
@@ -86,6 +87,7 @@ export default class SurveyScreen extends Component {
         <Provider store={store}>
           <QuestionForm ref='survey'
             notifyEndForm={() => {this.notifyEndForm()}}
+            updateToolbarTitle={this.updateToolbarTitle}
           />
         </Provider>
         <CustomPopupDialog onRef={ref => (this.popup = ref)}

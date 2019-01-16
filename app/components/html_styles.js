@@ -29,4 +29,7 @@ export default StyleSheet.create({
   'squareUl': {
     fontSize: text.fontSize,
   },
+  'addMarginTop': {
+    marginTop: 12
+  }
 })

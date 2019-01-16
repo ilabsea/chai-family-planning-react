@@ -37,8 +37,7 @@ const stackNav = createStackNavigator(
     Survey: {
       screen: SurveyScreen,
       navigationOptions: ({navigation}) => ({
-        title: "Survey",
-        // title: navigation.getParam('title'),
+        title: navigation.getParam('title'),
         headerLeft: (<TouchableOpacity onPress={navigation.getParam('showScaleAnimationDialog') } style={{paddingLeft: 20}}>
               <Icon name="arrow-back" color='white'/>
             </TouchableOpacity>)

@@ -20,7 +20,6 @@ import ImageScalable from 'react-native-scalable-image';
 import HTML from 'react-native-render-html';
 import { readFileAssets } from 'react-native-fs';
 
-
 import styles from '../components/styles';
 import classesStyles from '../components/html_styles';
 import * as ListPrefixes from '../components/list_prefixes';
@@ -57,6 +56,20 @@ class QuestionForm extends Component {
       isOnline: true,
     }
     this.showingQuestions = this.state.questions;
+    this.updateToolbarTitle(0);
+  }
+
+  updateToolbarTitle(index) {
+    let title = this.state.questions[index].label.match(/<title[^]*>[^]*<\/title>/ig);
+    title = this.removeHtmlTag(title[0])
+
+    this.props.updateToolbarTitle(title);
+  }
+
+  removeHtmlTag(html) {
+    if (!html) { return ''; }
+
+    return html.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "").trim();
   }
 
   componentWillMount(){
@@ -68,15 +81,6 @@ class QuestionForm extends Component {
   componentDidMount(){
     this.setState({startEntriedAt: new Date()});
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
-    this.readHTMLFile();
-  }
-
-  readHTMLFile(){
-    question = this.state.questions[this.state.currentIndex];
-    readFileAssets("html/" + question.label, "ascii")
-    .then((res) => {
-      question.label = res;
-    })
   }
 
   componentWillUnmount() {
@@ -115,20 +119,8 @@ class QuestionForm extends Component {
       )
     }else{
       question = this.state.questions[this.state.currentIndex];
-      html = `<div class='wrapper'>
-<h3 class='title'>
-8. Identifying Preferences
-</h3>
-<img src="asset:/images/10_IUD.png" width=200 height=200/>
+      html = question.label.replace(/<title[^]*>[^]*<\/title>/ig, '');
 
-<ul>
-<li>Talk to the client about what she does or doesn't want in her birth spacing methods
-    <img src="asset:/images/8_identifying_preferences.png"/>
-</li>
-<li>Discuss her responses, and help her to identify one or more methods that appeal to her. </li>
-<li>Once she has identified some methods that might suit her needs, SWIPE to go to the next screen. </li>
-</ul>
-</div>`
       return(
         <Animatable.View style={{flex: 1, backgroundColor: 'transparent'}} ref={this.handleQuestionViewRef}>
           <ScrollView style={styles.form} keyboardShouldPersistTaps='always'>
@@ -136,12 +128,14 @@ class QuestionForm extends Component {
               { question.required && <Text style={styles.required}>*</Text> }
             </View>
 
-            <HTML
-              html={question.label}
-              classesStyles={classesStyles}
-              imagesMaxWidth= {IMAGES_MAX_WIDTH}
-              listsPrefixesRenderers={ListPrefixUl}
-            />
+            <View style={question.required ? {marginLeft: 16} : {}}>
+              <HTML
+                html={html}
+                classesStyles={classesStyles}
+                imagesMaxWidth= {IMAGES_MAX_WIDTH}
+                listsPrefixesRenderers={ListPrefixUl}
+              />
+            </View>
 
             {this._renderQuestionField(question)}
           </ScrollView>
@@ -166,12 +160,12 @@ class QuestionForm extends Component {
   _onSwipeLeft(gestureState) {
     valid = this._validate(question);
     if(valid){
-
       if((this.state.currentIndex+1) == this.state.questions.length){
         this.props.notifyEndForm();
       }else{
         this.questionView.slideInRight(150);
         this.setState({currentIndex: (this.state.currentIndex+1)});
+        this.updateToolbarTitle(this.state.currentIndex+1);
       }
     }else{
       this._handleFieldError();
@@ -182,6 +176,7 @@ class QuestionForm extends Component {
     if(this.state.currentIndex == 0) return;
     this.questionView.slideInLeft(150);
     this.setState({currentIndex: (this.state.currentIndex-1)});
+    this.updateToolbarTitle(this.state.currentIndex-1);
   }
 
   _handleFieldError(){
