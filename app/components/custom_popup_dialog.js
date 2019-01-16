@@ -75,13 +75,13 @@ class CustomPopupDialog extends Component {
 
         {this.props.dialogType == 'warning' &&
           <View style={[styles.container, {margin: 30}]}>
-            <Text style={{fontSize: 24}}>Do you want to exit?  You will not be able to resume this session. </Text>
+            <Text style={{fontSize: 18}}>Do you want to exit? You will not be able to resume this session. </Text>
           </View>
         }
 
         {this.props.dialogType == 'confirm-end' &&
           <View style={[styles.container, {margin: 30}]}>
-            <Text style={{fontSize: 18}}>This concludes the counseling session.  Would you like to exit? </Text>
+            <Text style={{fontSize: 18}}>This concludes the counseling session. Would you like to exit? </Text>
           </View>
         }
 
