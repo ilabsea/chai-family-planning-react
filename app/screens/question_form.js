@@ -24,6 +24,7 @@ import { readFileAssets } from 'react-native-fs';
 import styles from '../components/styles';
 import classesStyles from '../components/html_styles';
 import * as ListPrefixes from '../components/list_prefixes';
+import ThankYou from '../components/thank_you';
 
 import QuestionService from '../services/question_service';
 import SurveyService from '../services/survey_service';
@@ -110,13 +111,14 @@ class QuestionForm extends Component {
     );
   }
 
+  restart = () => {
+    this.props.navigation.navigate("Video")
+  }
+
   _renderQuestion(){
     if(this.state.currentIndex == this.state.questions.length){
       return(
-        <View key={'end'} style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Text style={styles.thankMessage}>Thank you !</Text>
-          <Button title="Watch Video Again" onPress={() => this.props.navigation.navigate("Video")}></Button>
-        </View>
+        <ThankYou onRestart={this.restart}/>
       )
     }else{
       question = this.state.questions[this.state.currentIndex];

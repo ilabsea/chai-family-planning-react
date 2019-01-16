@@ -12,6 +12,7 @@ import {
 
 import styles from '../components/styles';
 import CustomPopupDialog from '../components/custom_popup_dialog';
+import ThankYou from '../components/thank_you';
 
 
 export default class ThankScreen extends Component {
@@ -44,31 +45,13 @@ export default class ThankScreen extends Component {
     return true;
   }
 
+  restart = () => {
+    this.props.navigation.navigate("Video", {replay: true})
+  }
+
   render() {
     return (
-        <View key={'end'} style={styles.mainScreen}>
-          <View style={[styles.container, { justifyContent: 'center'}]}>
-            <Text style={styles.thankMessage}>Thank you !</Text>
-          </View>
-        <View style={styles.buttonView}>
-          <TouchableOpacity
-            style={[styles.button, {alignSelf: 'flex-start'}]}
-            onPress={() => this.props.navigation.navigate("Video", {replay: true})}>
-            <Text style={styles.buttonText}> Start New Session </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.button,{alignSelf: 'flex-start'}]}
-            onPress={() => { this.popup.showScaleAnimationDialog() }}>
-            <Text style={[styles.buttonText, styles.noButtonText]}> Exit App </Text>
-          </TouchableOpacity>
-        </View>
-
-        <CustomPopupDialog onRef={ref => (this.popup = ref)}
-          onNavigation={this.props.navigation}
-          onSave={() => { BackHandler.exitApp() }}
-          dialogType = {this.state.dialogType}
-        />
-      </View>
+      <ThankYou onRestart={this.restart}/>
     )
   }
 
