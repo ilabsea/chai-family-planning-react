@@ -25,5 +25,11 @@ export default StyleSheet.create({
   },
   'addMarginTop': {
     marginTop: 12
+  },
+  'image8': {
+    position: 'relative',
+    right: 24,
+    width: Dimensions.get('window').width-100,
+    height: (Dimensions.get('window').width-100)*1.3
   }
 })
