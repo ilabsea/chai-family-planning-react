@@ -59,19 +59,7 @@ class QuestionForm extends Component {
       isOnline: true,
     }
     this.showingQuestions = this.state.questions;
-    this.updateToolbarTitle(0);
-  }
-
-  updateToolbarTitle(index) {
-    let title = this.state.questions[index].label.match(/<title[^]*>[^]*<\/title>/ig);
-    title = !!title ? this.removeHtmlTag(title[0]) : 'Survey';
-    this.props.updateToolbarTitle(title);
-  }
-
-  removeHtmlTag(html) {
-    if (!html) { return ''; }
-
-    return html.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "").trim();
+    this._updateToolbarTitle();
   }
 
   componentWillMount(){
@@ -153,7 +141,18 @@ class QuestionForm extends Component {
         </Animatable.View>
       )
     }
+  }
 
+  _removeHtmlTag(html) {
+    if (!html) { return ''; }
+
+    return html.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "").trim();
+  }
+
+  _updateToolbarTitle = () => {
+    let title = this.state.questions[this.state.currentIndex].label.match(/<title[^]*>[^]*<\/title>/ig);
+    title = !!title ? this._removeHtmlTag(title[0]) : 'Survey';
+    this.props.updateToolbarTitle(title);
   }
 
   _onSwipeLeft(gestureState) {
@@ -163,8 +162,7 @@ class QuestionForm extends Component {
         this.props.notifyEndForm();
       }else{
         this.questionView.slideInRight(150);
-        this.updateToolbarTitle(this.state.currentIndex+1);
-        this.setState({currentIndex: (this.state.currentIndex+1)});
+        this.setState({currentIndex: (this.state.currentIndex+1)}, this._updateToolbarTitle);
       }
     }else{
       ToastAndroid.showWithGravity('Sorry this response is required', ToastAndroid.SHORT, ToastAndroid.CENTER)
@@ -174,8 +172,7 @@ class QuestionForm extends Component {
   _onSwipeRight(gestureState) {
     if(this.state.currentIndex == 0) return;
     this.questionView.slideInLeft(150);
-    this.updateToolbarTitle(this.state.currentIndex-1);
-    this.setState({currentIndex: (this.state.currentIndex-1)});
+    this.setState({currentIndex: this.state.currentIndex -1}, this._updateToolbarTitle);
   }
 
   _validate(question){
