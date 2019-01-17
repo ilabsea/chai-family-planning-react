@@ -34,7 +34,7 @@ export default StyleSheet.create({
     position: 'relative',
     right: 24,
     width: width,
-    height: width*1.3
+    height: width*1.4
   },
   'image9': {
     width: width,
