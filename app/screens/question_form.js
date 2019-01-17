@@ -156,7 +156,8 @@ class QuestionForm extends Component {
   }
 
   _updateToolbarTitle = () =>{
-    let title = this.state.questions[this.state.currentIndex].label.match(/<title[^]*>[^]*<\/title>/ig);
+    let currentQuestion = this.state.questions[this.state.currentIndex];
+    let title = !!currentQuestion && currentQuestion.label.match(/<title[^]*>[^]*<\/title>/ig);
     title = !!title ? this._removeHtmlTag(title[0]) : 'Survey';
     this.props.updateToolbarTitle(title);
   }
