@@ -109,30 +109,7 @@ class CustomPopupDialog extends Component {
       )
     }
 
-    if(this.props.dialogType == 'warning'){
-      return(
-        [
-          <DialogButton
-            text="Yes"
-            textStyle={{color: '#1976d2'}}
-            onPress={this.ignoreChanges}
-            buttonStyle={{right: '20%', bottom: 0, position: 'absolute'}}
-            key='button-1'/>,
-
-            <DialogButton
-              text="No"
-              align="right"
-              textStyle={{color: '#1976d2'}}
-              buttonStyle={{bottom: 0, position: 'absolute'}}
-              onPress={() => {
-                this.scaleAnimationDialog.dismiss();
-              }}
-              key='button-2'/>
-        ]
-      )
-    }
-
-    if(this.props.dialogType == 'confirm-end'){
+    if(this.props.dialogType == 'warning' || this.props.dialogType == 'confirm-end'){
       return(
         [
           <DialogButton

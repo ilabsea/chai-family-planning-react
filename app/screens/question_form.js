@@ -149,7 +149,7 @@ class QuestionForm extends Component {
     return html.replace(/<\/?("[^"]*"|'[^']*'|[^>])*(>|$)/g, "").trim();
   }
 
-  _updateToolbarTitle = () => {
+  _updateToolbarTitle = () =>{
     let title = this.state.questions[this.state.currentIndex].label.match(/<title[^]*>[^]*<\/title>/ig);
     title = !!title ? this._removeHtmlTag(title[0]) : 'Survey';
     this.props.updateToolbarTitle(title);
@@ -158,11 +158,13 @@ class QuestionForm extends Component {
   _onSwipeLeft(gestureState) {
     valid = this._validate(question);
     if(valid){
-      if((this.state.currentIndex+1) == this.state.questions.length){
-        this.props.notifyEndForm();
-      }else{
+      if(question.order >= questions.length - 2 && !this.state.questions[this.state.currentIndex + 1] ) {
+        this.props.notifyForm('confirm-end');
+      } else if ((this.state.currentIndex + 1) == this.state.questions.length){
+        this.props.notifyForm('warning');
+      } else {
         this.questionView.slideInRight(150);
-        this.setState({currentIndex: (this.state.currentIndex+1)}, this._updateToolbarTitle);
+        this.setState({currentIndex: (this.state.currentIndex+1)}, this._updateToolbarTitle)
       }
     }else{
       ToastAndroid.showWithGravity('Sorry this response is required', ToastAndroid.SHORT, ToastAndroid.CENTER)

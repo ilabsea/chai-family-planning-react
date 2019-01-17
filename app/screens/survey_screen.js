@@ -72,9 +72,9 @@ export default class SurveyScreen extends Component {
     this.props.navigation.navigate("Video");
   }
 
-  notifyEndForm(){
+  notifyForm(dialogType){
     Keyboard.dismiss();
-    this.setState({dialogType: 'confirm-end'});
+    this.setState({dialogType: dialogType});
     this.popup.showScaleAnimationDialog();
   }
 
@@ -83,7 +83,8 @@ export default class SurveyScreen extends Component {
       <View style={styles.container}>
         <Provider store={store}>
           <QuestionForm ref='survey'
-            notifyEndForm={() => {this.notifyEndForm()}}
+            notifyForm={(dialogType) => {this.notifyForm(dialogType)}}
+            notifyDuringForm={() => {this.notifyDuringForm()}}
             updateToolbarTitle={this.updateToolbarTitle}
           />
         </Provider>
