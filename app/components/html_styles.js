@@ -21,12 +21,14 @@ export default StyleSheet.create({
   },
   'circleUl': {
     fontSize: text.fontSize,
+    marginBottom: -10
   },
   'squareUl': {
     fontSize: text.fontSize,
+    marginBottom: -10
   },
   'addMarginTop': {
-    marginTop: 12
+    marginTop: 10
   },
   'image8': {
     position: 'relative',
@@ -37,5 +39,5 @@ export default StyleSheet.create({
   'image9': {
     width: width,
     height: width*0.61
-  }
+  },
 })
