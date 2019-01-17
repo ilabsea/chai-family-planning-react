@@ -4,23 +4,36 @@ import {
   StyleSheet,
   Text,
   View,
-  Button
+  Button,
+  ScrollView
 } from 'react-native';
 
+import DeviceInfo from 'react-native-device-info';
 import styles from '../components/styles';
 
 export default class AboutScreen extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
-      <View>
-        <Text style={styles.aboutText}>
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </Text>
+      <View style={{flex: 1}}>
+        <ScrollView contentContainerStyle={{flexGrow: 1}}>
+          <Text style={styles.aboutText}>
+            Choice is a mobile application that allow counsellor to learn and understand about family planning.
+          </Text>
+
+          <Text style={styles.aboutText}>
+            Choice mobile application is created by The The Clinton Health Access Initiative, Inc. (CHAI). It is technical supported by InSTEDD iLabSEA.
+          </Text>
+
+          <Text style={[styles.aboutText, {flex: 1}]}>
+            The Clinton Health Access Initiative, Inc. (CHAI) was founded in 2002 with a transformational goal: help save the lives of millions of people living with HIV/AIDS in the developing world by dramatically scaling up antiretroviral treatment.
+          </Text>
+
+          <View style={{flexDirection: 'row', justifyContent: 'flex-end', padding: 24}}>
+            <Text style={[styles.aboutText, {paddingHorizontal: 0}]}>Version: </Text>
+            <Text style={[styles.aboutText, {paddingHorizontal: 0}]}>{DeviceInfo.getVersion()}</Text>
+          </View>
+        </ScrollView>
       </View>
     )
   }
