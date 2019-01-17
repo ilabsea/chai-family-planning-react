@@ -51,7 +51,12 @@ export default class ThankScreen extends Component {
 
   render() {
     return (
-      <ThankYou onRestart={this.restart}/>
+      <ThankYou
+        onRestart={this.restart}
+        navigation={this.props.navigation}
+        onSave={() => { BackHandler.exitApp() }}
+        dialogType='confirm-exit'
+      />
     )
   }
 

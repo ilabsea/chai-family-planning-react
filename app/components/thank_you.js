@@ -6,6 +6,8 @@ import {
   TouchableOpacity
 } from "react-native";
 import styles from './styles';
+import CustomPopupDialog from './custom_popup_dialog';
+
 
 const ThankYou = props => (
     <View key={'end'} style={styles.mainScreen}>
@@ -20,17 +22,15 @@ const ThankYou = props => (
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.button,{alignSelf: 'flex-start'}]}
-          onPress={() => { BackHandler.exitApp() }}>
+          onPress={() => { this.popup.showScaleAnimationDialog() }}>
           <Text style={[styles.buttonText, styles.noButtonText]}> Exit App </Text>
         </TouchableOpacity>
       </View>
-
-      {// <CustomPopupDialog onRef={ref => (this.popup = ref)}
-      //   onNavigation={this.props.navigation}
-      //   onSave={() => { BackHandler.exitApp() }}
-      //   dialogType = {this.state.dialogType}
-      // />
-    }
+      <CustomPopupDialog onRef={ref => (this.popup = ref)}
+        onNavigation={props.navigation}
+        onSave={() => { BackHandler.exitApp() }}
+        dialogType = {props.dialogType}
+      />
     </View>
 );
 

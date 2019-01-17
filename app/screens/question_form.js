@@ -9,7 +9,8 @@ import {
   NetInfo,
   Dimensions,
   TouchableOpacity,
-  ToastAndroid
+  ToastAndroid,
+  BackHandler
 } from 'react-native';
 
 import * as Animatable from 'react-native-animatable';
@@ -106,7 +107,12 @@ class QuestionForm extends Component {
   _renderQuestion(){
     if(this.state.currentIndex == this.state.questions.length){
       return(
-        <ThankYou onRestart={this.restart}/>
+        <ThankYou
+          onRestart={this.restart}
+          navigation={this.props.navigation}
+          onSave={() => { BackHandler.exitApp() }}
+          dialogType='confirm-exit'
+        />
       )
     }else{
       question = this.state.questions[this.state.currentIndex];
