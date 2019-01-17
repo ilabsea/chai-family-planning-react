@@ -34,10 +34,10 @@ export default StyleSheet.create({
     position: 'relative',
     right: 24,
     width: width,
-    height: width*1.4
+    height: width*1.393
   },
   'image9': {
     width: width,
-    height: width*0.61
+    height: width*0.603
   },
 })
