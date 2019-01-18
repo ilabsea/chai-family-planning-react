@@ -16,7 +16,7 @@ export default StyleSheet.create({
   'wrapper': {
     fontSize: text.fontSize,
     margin: 10,
-    width: Dimensions.get('window').width - 75,
+    width: width + 25,
     lineHeight: 35
   },
   'indent': {
