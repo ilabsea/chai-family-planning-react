@@ -7,7 +7,10 @@ export const text = {
   fontSize: 24
 }
 
-const width = Dimensions.get('window').width-100;
+// const width = 1280 - 100;
+const margin = 100;
+let width = Dimensions.get('window').width;
+width = width > 1000 ? (800 - margin) : (width - margin);
 
 export default StyleSheet.create({
   'wrapper': {
@@ -31,13 +34,15 @@ export default StyleSheet.create({
     marginTop: 10
   },
   'image8': {
-    position: 'relative',
+
     right: 24,
     width: width,
-    height: width*1.393
+    height: width*1.3929
   },
   'image9': {
+    right: 24,
+    position: 'relative',
     width: width,
-    height: width*0.603
+    height: width*0.6024
   },
 })
