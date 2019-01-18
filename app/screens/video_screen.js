@@ -9,6 +9,7 @@ import {
   Alert,
   Button,
   BackHandler,
+  Image,
 } from 'react-native';
 
 import environment from '../environments/environment';
@@ -31,7 +32,8 @@ export default class VideoScreen extends Component {
     super(props);
 
     this.state = {
-      showLayer: false
+      showLayer: false,
+      loading: true
     };
   }
 
@@ -74,6 +76,7 @@ export default class VideoScreen extends Component {
   updateLayout = (event) => {
     const { width, height } = event.nativeEvent.layout;
     this.setState({width, height});
+    this.setState({loading: false});
   }
 
   resumePlayeHandler = () => {
@@ -104,11 +107,18 @@ export default class VideoScreen extends Component {
       </TouchableOpacity>
     );
 
+    let opacityStyle = this.state.loading ? {opacity: 0} : {opacity: 1};
+
     return (
       <View style={styles.container}>
-        <View style={[styles.container, componentStyles.container]} onLayout={this.updateLayout}>
-          { this.state.showLayer && layerContent }
+        { this.state.loading &&
+          <View style={styles.loadingContainer}>
+            <Image source={require('../assets/images/loading.gif')} />
+          </View>
+        }
 
+        <View style={[styles.container, componentStyles.container, opacityStyle]} onLayout={this.updateLayout}>
+          { this.state.showLayer && layerContent }
           <VideoPlayer
             video={{ uri: environment['video'] }}
             videoWidth={this.state.width}
@@ -174,5 +184,15 @@ const componentStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.7)'
+  },
+  loadingContainer: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: 0,
+    bottom: 70,
+    right: 0,
+    left: 0,
+    zIndex: 1001
   }
 });
