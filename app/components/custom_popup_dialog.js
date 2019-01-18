@@ -75,19 +75,19 @@ class CustomPopupDialog extends Component {
 
         {this.props.dialogType == 'warning' &&
           <View style={[styles.container, {margin: 30}]}>
-            <Text style={{fontSize: 18}}>Do you want to exit? You will not be able to resume this session. </Text>
+            <Text style={{fontSize: 24, lineHeight: 40}}>Do you want to exit? You will not be able to resume this session. </Text>
           </View>
         }
 
         {this.props.dialogType == 'confirm-end' &&
-          <View style={[styles.container, {margin: 30}]}>
-            <Text style={{fontSize: 18}}>This concludes the counseling session. Would you like to exit? </Text>
+          <View style={[styles.container, {margin: 30 }]}>
+            <Text style={{fontSize: 24, lineHeight: 40}}>This concludes the counseling session. Would you like to exit? </Text>
           </View>
         }
 
         {this.props.dialogType == 'confirm-exit' &&
           <View style={[styles.container, {margin: 30}]}>
-            <Text style={{fontSize: 18}}>Are you sure you want to exit? </Text>
+            <Text style={{fontSize: 24, lineHeight: 40}}>Are you sure you want to exit? </Text>
           </View>
         }
 
@@ -101,7 +101,7 @@ class CustomPopupDialog extends Component {
         [          <DialogButton
                     text="CANCEL"
                     align="right"
-                    textStyle={{color: '#1976d2'}}
+                    textStyle={styles.dialogButtonText}
                     onPress={() => {
                       this.scaleAnimationDialog.dismiss();
                     }}
@@ -114,16 +114,16 @@ class CustomPopupDialog extends Component {
         [
           <DialogButton
             text="Yes"
-            textStyle={{color: '#1976d2'}}
+            textStyle={styles.dialogButtonText}
             onPress={this.goToNextScreen}
-            buttonStyle={{right: '20%', bottom: 0, position: 'absolute'}}
+            buttonStyle={styles.dialogButton}
             key='button-1'/>,
 
             <DialogButton
               text="No"
               align="right"
-              textStyle={{color: '#1976d2'}}
-              buttonStyle={{bottom: 0, position: 'absolute'}}
+              textStyle={styles.dialogButtonText}
+              buttonStyle={[styles.dialogButton, {right: 0}]}
               onPress={() => {
                 this.scaleAnimationDialog.dismiss();
               }}
@@ -137,16 +137,16 @@ class CustomPopupDialog extends Component {
         [
           <DialogButton
             text="Yes"
-            textStyle={{color: '#1976d2'}}
+            textStyle={styles.dialogButtonText}
             onPress={this.props.onSave}
-            buttonStyle={{right: '20%', bottom: 0, position: 'absolute'}}
+            buttonStyle={styles.dialogButton}
             key='button-1'/>,
 
             <DialogButton
               text="No"
               align="right"
-              textStyle={{color: '#1976d2'}}
-              buttonStyle={{bottom: 0, position: 'absolute'}}
+              textStyle={styles.dialogButtonText}
+              buttonStyle={[styles.dialogButton, {right: 0}]}
               onPress={() => {
                 this.scaleAnimationDialog.dismiss();
               }}

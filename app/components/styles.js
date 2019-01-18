@@ -167,7 +167,7 @@ export default StyleSheet.create({
   },
   warningBox: {
     width: Math.min(height, width) * 0.5,
-    height: Math.max(height, width) * 0.1,
+    height: Math.max(height, width) * 0.13,
     position: 'absolute',
     top: '30%'
   },
@@ -176,6 +176,16 @@ export default StyleSheet.create({
     height: Math.max(height, width) * 0.2,
     position: 'absolute',
     top: '20%'
+  },
+  dialogButtonText: {
+    color: '#1976d2',
+    fontSize: text.fontSize
+  },
+  dialogButton: {
+    color: '#1976d2',
+    right: '20%',
+    bottom: 0,
+    position: 'absolute'
   }
 
 
