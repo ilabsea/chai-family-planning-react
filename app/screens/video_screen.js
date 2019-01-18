@@ -112,7 +112,7 @@ export default class VideoScreen extends Component {
     return (
       <View style={styles.container}>
         { this.state.loading &&
-          <View style={styles.loadingContainer}>
+          <View style={componentStyles.loadingContainer}>
             <Image source={require('../assets/images/loading.gif')} />
           </View>
         }
