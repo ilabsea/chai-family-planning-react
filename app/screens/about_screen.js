@@ -32,6 +32,7 @@ export default class AboutScreen extends Component {
           <Text style={styles.aboutText}>
             Choices is developed by InSTEDD Innovation Lab Southeast Asia.
           </Text>
+          <View style={{flex: 1}}></View>
 
           <View style={{flexDirection: 'row', justifyContent: 'flex-end', padding: 24}}>
             <Text style={[styles.aboutText, {paddingHorizontal: 0}]}>Version: </Text>

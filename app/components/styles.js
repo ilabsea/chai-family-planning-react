@@ -137,11 +137,13 @@ export default StyleSheet.create({
     color: 'black',
   },
   aboutText: {
-    paddingVertical: 10,
+    paddingVertical: 20,
     paddingHorizontal: 20,
     color: 'black',
     textAlign: 'justify',
-    fontSize: text.fontSize
+    fontSize: text.fontSize,
+    lineHeight: 35,
+
   },
   backgroundVideo: {
     position: 'absolute',
