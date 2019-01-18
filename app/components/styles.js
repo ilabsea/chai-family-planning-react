@@ -166,8 +166,8 @@ export default StyleSheet.create({
     borderTopColor: 'transparent',
   },
   warningBox: {
-    width: Math.min(height, width) * 0.5,
-    height: Math.max(height, width) * 0.13,
+    width: Math.min(height, width) * 0.6,
+    height: Math.max(height, width) * 0.15,
     position: 'absolute',
     top: '30%'
   },

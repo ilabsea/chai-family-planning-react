@@ -70,7 +70,7 @@ class QuestionForm extends Component {
   }
 
   componentDidMount(){
-    this.setState({startEntriedAt: new Date()});
+    this.setState({startEntriedAt: new Date(), classesStyles: classesStyles});
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectivityChange);
   }
 
@@ -128,7 +128,7 @@ class QuestionForm extends Component {
             <View style={question.required ? {marginLeft: 16} : {}}>
               <HTML
                 html={html}
-                classesStyles={classesStyles}
+                classesStyles={this.state.classesStyles}
                 imagesMaxWidth= {IMAGES_MAX_WIDTH}
                 listsPrefixesRenderers={ListPrefixUl}
               />
