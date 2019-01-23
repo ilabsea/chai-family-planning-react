@@ -91,8 +91,7 @@ class QuestionForm extends Component {
 
     return (
       <GestureRecognizer
-        onSwipeLeft={(state) => this._onSwipeLeft(state)}
-        onSwipeRight={(state) => this._onSwipeRight(state)}
+        onSwipeRight={(state) => this._moveBackHandler(state)}
         config={config}
         style={{flex: 1}}
         >
@@ -122,11 +121,7 @@ class QuestionForm extends Component {
       return(
         <Animatable.View style={{flex: 1, backgroundColor: 'transparent'}} ref={this.handleQuestionViewRef}>
           <ScrollView style={styles.form} keyboardShouldPersistTaps='always' ref={this.handleScrollViewRef}>
-            <View style={styles.fieldWrapper}>
-              { question.required && <Text style={styles.required}>*</Text> }
-            </View>
-
-            <View style={question.required ? {marginLeft: 16} : {}}>
+            <View>
               <HTML
                 html={html}
                 classesStyles={this.state.classesStyles}
@@ -138,13 +133,15 @@ class QuestionForm extends Component {
             {this._renderQuestionField(question)}
           </ScrollView>
 
-          <View style={{justifyContent: 'flex-end'}}>
-            <TouchableOpacity
-              style={[styles.button]}
-              onPress={() => this._onSwipeLeft({})}>
-              <Text style={[styles.buttonText]}> Next </Text>
-            </TouchableOpacity>
-          </View>
+          { (question.type != 'select_one' || !question.required) &&
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <TouchableOpacity
+                style={[styles.button]}
+                onPress={() => this._moveNextHandler({})}>
+                <Text style={[styles.buttonText]}> Next </Text>
+              </TouchableOpacity>
+            </View>
+          }
         </Animatable.View>
       )
     }
@@ -163,7 +160,7 @@ class QuestionForm extends Component {
     this.props.updateToolbarTitle(title);
   }
 
-  _onSwipeLeft(gestureState) {
+  _moveNextHandler(gestureState) {
     valid = this._validate(question);
     if(valid){
       if(question.order >= questions.length - 2 && !this.state.questions[this.state.currentIndex + 1] ) {
@@ -180,7 +177,7 @@ class QuestionForm extends Component {
     }
   }
 
-  _onSwipeRight(gestureState) {
+  _moveBackHandler(gestureState) {
     if(this.state.currentIndex == 0) return;
     this.scrollView.scrollTo({x: 0, y: 0, animated: false});
     this.questionView.slideInLeft(150);
@@ -263,7 +260,7 @@ class QuestionForm extends Component {
                  component={ CustomRadioButtonGroup }
                  onChange = {(value) => {
                    this._handleOnChange(question, value);
-                   this._onSwipeLeft({});
+                   this._moveNextHandler({});
                  }}
           />
         );
