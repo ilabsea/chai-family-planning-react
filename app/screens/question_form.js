@@ -46,6 +46,7 @@ const questions = QuestionService.get();
 class QuestionForm extends Component {
   showingQuestions = [];
   handleQuestionViewRef = ref => this.questionView = ref;
+  handleScrollViewRef = ref => this.scrollView = ref;
 
   constructor(props) {
     super(props);
@@ -120,7 +121,7 @@ class QuestionForm extends Component {
 
       return(
         <Animatable.View style={{flex: 1, backgroundColor: 'transparent'}} ref={this.handleQuestionViewRef}>
-          <ScrollView style={styles.form} keyboardShouldPersistTaps='always'>
+          <ScrollView style={styles.form} keyboardShouldPersistTaps='always' ref={this.handleScrollViewRef}>
             <View style={styles.fieldWrapper}>
               { question.required && <Text style={styles.required}>*</Text> }
             </View>
@@ -170,6 +171,7 @@ class QuestionForm extends Component {
       } else if ((this.state.currentIndex + 1) == this.state.questions.length){
         this.props.notifyForm('warning');
       } else {
+        this.scrollView.scrollTo({x: 0, y: 0, animated: false});
         this.questionView.slideInRight(150);
         this.setState({currentIndex: (this.state.currentIndex+1)}, this._updateToolbarTitle)
       }
@@ -180,6 +182,7 @@ class QuestionForm extends Component {
 
   _onSwipeRight(gestureState) {
     if(this.state.currentIndex == 0) return;
+    this.scrollView.scrollTo({x: 0, y: 0, animated: false});
     this.questionView.slideInLeft(150);
     this.setState({currentIndex: this.state.currentIndex -1}, this._updateToolbarTitle);
   }
