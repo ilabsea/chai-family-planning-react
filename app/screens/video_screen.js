@@ -10,6 +10,7 @@ import {
   Button,
   BackHandler,
   Image,
+  ActivityIndicator,
 } from 'react-native';
 
 import environment from '../environments/environment';
@@ -113,7 +114,7 @@ export default class VideoScreen extends Component {
       <View style={styles.container}>
         { this.state.loading &&
           <View style={componentStyles.loadingContainer}>
-            <Image source={require('../assets/images/loading.gif')} />
+            <ActivityIndicator size="large" />
           </View>
         }
 
