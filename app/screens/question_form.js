@@ -136,7 +136,7 @@ class QuestionForm extends Component {
           { (question.type != 'select_one' || !question.required) &&
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
               <TouchableOpacity
-                style={[styles.button]}
+                style={[styles.button, {flex: 1}]}
                 onPress={() => this._moveNextHandler({})}>
                 <Text style={[styles.buttonText]}> Next </Text>
               </TouchableOpacity>
