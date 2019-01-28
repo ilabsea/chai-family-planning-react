@@ -42,7 +42,7 @@ export default class CustomNumericInput extends Component {
   }
 
   _validateInteger(text){
-    return (/^\d+$/.test(text));
+    return (/^\d*$/.test(text));
   }
 
   _validateDecimal(text){
