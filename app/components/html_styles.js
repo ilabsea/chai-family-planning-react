@@ -34,15 +34,13 @@ export default StyleSheet.create({
     marginTop: 10
   },
   'image8': {
-
     right: 24,
     width: width,
     height: width*1.3929
   },
   'image9': {
-    right: 24,
     position: 'relative',
     width: width,
-    height: width*0.6024
+    height: width*0.8801
   },
 })
