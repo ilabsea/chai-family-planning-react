@@ -133,7 +133,8 @@ class QuestionForm extends Component {
             {this._renderQuestionField(question)}
           </ScrollView>
 
-          { (question.type != 'select_one' || !question.required) &&
+
+          { !question.required &&
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
               <TouchableOpacity
                 style={[styles.button, {flex: 1}]}
