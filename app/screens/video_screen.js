@@ -25,8 +25,6 @@ import VideoPlayer from 'react-native-video-player';
 import Orientation from 'react-native-orientation';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const VIMEO_ID = '179859217';
-
 export default class VideoScreen extends Component {
 
   constructor(props) {

@@ -3,8 +3,8 @@ const environment = {
   http_basic_user: '',
   http_basic_password: '',
   syn_schedule_in_ms: 300000,
-  form: 'form.xls',
-  video: 'video.mp4'
+  form: 'form.xlsx',
+  video: 'video'
 };
 
 export default environment;

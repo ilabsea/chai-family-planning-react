@@ -43,4 +43,49 @@ export default StyleSheet.create({
     width: width,
     height: width*0.8801
   },
+  'Efficacy_Table_KH': {
+    position: 'relative',
+    width: width,
+    height: width*1.0536
+  },
+  'COC_Guidelines': {
+    position: 'relative',
+    width: width,
+    height: width*2.0416
+  },
+  'Condoms_Guidelines': {
+    position: 'relative',
+    width: width,
+    height: width*1.8244
+  },
+  'Implant_Guidelines': {
+    position: 'relative',
+    width: width,
+    height: width*1.8396
+  },
+  'Injection_Guidelines': {
+    position: 'relative',
+    width: width,
+    height: width*2.2593
+  },
+  'IUD_Guidelines': {
+    position: 'relative',
+    width: width,
+    height: width*2.2662
+  },
+  'POP_Guidelines': {
+    position: 'relative',
+    width: width,
+    height: width*1.9126
+  },
+  'Sterilization_Guidelines': {
+    position: 'relative',
+    width: width,
+    height: width*1.902
+  },
+  'Swipe_Right_KH': {
+    position: 'relative',
+    width: width,
+    height: width*0.2886
+  },
 })
